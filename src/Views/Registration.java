@@ -64,6 +64,8 @@ public class Registration extends JFrame {
 		contentPane.add(lblRetypePassword);
 		
 		JButton btnRegister = new JButton("Register");
+		// viet tach ra 
+		// dung implements ActionListener
 		btnRegister.addActionListener(new ActionListener() {
 			
 			@Override
@@ -91,7 +93,7 @@ public class Registration extends JFrame {
 				}
 				if (!isFormBlank && isEmailValid && isPasswordValid) {
 					userDAO.insertUserRegistration(new User(getFirstName(), getLastName(), getEmail(), getPW()));
-					Login loginFrame = new Login();
+					LoginView loginFrame = new LoginView();
 					loginFrame.setVisible(true);
 					dispose();
 				}
@@ -105,7 +107,7 @@ public class Registration extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Login loginFrame = new Login();
+				LoginView loginFrame = new LoginView();
 				loginFrame.setVisible(true);
 				dispose();
 			}

@@ -16,19 +16,24 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class Login extends JFrame {
+public class LoginView extends JFrame {
 	
+	// cai nay toi khong hieu. nen vut vao controller. 
 	UserDAO userDAO = new UserDAO();
 	
 	private JPanel contentPane;
-	private static JTextField textFieldUsername;
-	private static JPasswordField passwordField;
-	private static JLabel warningMessage;
+	private JButton btnLogin;
+	private JButton btnRegister;
+	private JTextField textFieldUsername;
+	private JPasswordField passwordField;
+	private JLabel warningMessage;
 	
+	
+
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public LoginView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -56,42 +61,11 @@ public class Login extends JFrame {
 		passwordField.setBounds(184, 131, 162, 26);
 		contentPane.add(passwordField);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean isFormBlank = false;
-				if  (getEmail().equals("") || getPW().equals("")) {
-					isFormBlank = true;
-					warningMessage.setText("Fields can not be blank");
-				} else {
-					warningMessage.setText("");
-				}
-				
-				if (!isFormBlank) {
-					if (userDAO.checkLogin(getEmail(), getPW())) {
-						UserInterface UIFrame = new UserInterface();
-						UIFrame.setVisible(true);
-						dispose();   
-					}
-					 else {
-						warningMessage.setText("Account not existed! Please register");
-					}
-				}
-			}
-			
-		});
+		btnLogin = new JButton("Login");
 		btnLogin.setBounds(99, 188, 100, 29);
 		contentPane.add(btnLogin);
 		
-		JButton btnRegister = new JButton("Register");
-		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Registration registerFrame = new Registration();
-				registerFrame.setVisible(true);
-				dispose();
-			}
-			
-		});
+		btnRegister = new JButton("Register");
 		btnRegister.setBounds(235, 188, 100, 29);
 		contentPane.add(btnRegister);
 		
@@ -107,11 +81,39 @@ public class Login extends JFrame {
 		contentPane.add(warningMessage);
 	}
 	
-	public static String getEmail() {
+	public String getEmail() {
 		return textFieldUsername.getText();
 	}
 	
-	public static String getPW() {
+	public String getPW() {
 		return String.copyValueOf(passwordField.getPassword());
+	}
+	
+	public JButton getBtnLogin(){
+		return btnLogin;
+	}
+	
+	public JButton getBtnRegister(){
+		return btnRegister;
+	}
+	
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTextField getTextFieldUsername() {
+		return textFieldUsername;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public JLabel getWarningMessage() {
+		return warningMessage;
 	}
 }

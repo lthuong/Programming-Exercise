@@ -1,7 +1,9 @@
 package MainApp;
 
 import java.awt.EventQueue;
-import Views.Login;
+
+import Controllers.LoginController;
+import Views.LoginView;
 
 public class MainApp {
 
@@ -13,8 +15,8 @@ public class MainApp {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
-					frame.setVisible(true);
+					LoginView frame = new LoginView();
+					new LoginController(frame);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
