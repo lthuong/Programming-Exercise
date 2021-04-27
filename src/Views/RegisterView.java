@@ -1,17 +1,8 @@
 package Views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import ConnectDB.UserDAO;
-import Models.User;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -20,16 +11,16 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 
 @SuppressWarnings("serial")
-public class Registration extends JFrame {
-
-	UserDAO userDAO = new UserDAO();
+public class RegisterView extends JFrame {
 	
-	private JPanel contentPane;
+	private static JPanel contentPane;
 	private static JTextField textFieldEmail;
 	private static JTextField textFieldFirstName;
 	private static JTextField textFieldLastName;
 	private static JPasswordField passwordField;
 	private static JPasswordField passwordRetypeField;
+	private static JButton btnLogin;
+	private static JButton btnRegister;
 	private static JLabel emailMessage;
 	private static JLabel passwordMessage;
 	private static JLabel warningMessage;
@@ -37,7 +28,7 @@ public class Registration extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Registration() {
+	public RegisterView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -63,55 +54,11 @@ public class Registration extends JFrame {
 		lblRetypePassword.setBounds(60, 173, 117, 21);
 		contentPane.add(lblRetypePassword);
 		
-		JButton btnRegister = new JButton("Register");
-		// viet tach ra 
-		// dung implements ActionListener
-		btnRegister.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				boolean isEmailValid = true;
-				boolean isPasswordValid = true;
-				boolean isFormBlank = false;
-				if (userDAO.checkEmailExisted(getEmail())) {
-					emailMessage.setText("Invalid");
-					isEmailValid = false;
-				} else {
-					emailMessage.setText("");
-				}
-				if (getFirstName().equals("") || getLastName().equals("") || getEmail().equals("") || getPW().equals("") || getRetypePW().equals("")) {
-					isFormBlank = true;
-					warningMessage.setText("Fields can not be blank");
-				} else {
-					warningMessage.setText("");
-				}
-				if (!getPW().equals(getRetypePW())) {
-					passwordMessage.setText("Not match");
-					isPasswordValid = false;
-				} else {
-					passwordMessage.setText("");
-				}
-				if (!isFormBlank && isEmailValid && isPasswordValid) {
-					userDAO.insertUserRegistration(new User(getFirstName(), getLastName(), getEmail(), getPW()));
-					LoginView loginFrame = new LoginView();
-					loginFrame.setVisible(true);
-					dispose();
-				}
-			}
-		});
+		btnRegister = new JButton("Register");
 		btnRegister.setBounds(80, 219, 117, 29);
 		contentPane.add(btnRegister);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				LoginView loginFrame = new LoginView();
-				loginFrame.setVisible(true);
-				dispose();
-			}
-		});
+		btnLogin = new JButton("Login");
 		btnLogin.setBounds(238, 219, 117, 29);
 		contentPane.add(btnLogin);
 		
@@ -166,19 +113,39 @@ public class Registration extends JFrame {
 		warningMessage.setBounds(190, 200, 182, 16);
 		contentPane.add(warningMessage);
 	}
-	public static String getFirstName() {
+	public String getFirstName() {
 		return textFieldFirstName.getText();
 	}
-	public static String getLastName() {
+	public String getLastName() {
 		return textFieldLastName.getText();
 	}
-	public static String getEmail() {
+	public String getEmail() {
 		return textFieldEmail.getText();
 	}
-	public static String getPW() {
+	public String getPW() {
 		return String.copyValueOf(passwordField.getPassword());
 	}
-	public static String getRetypePW() {
+	public String getRetypePW() {
 		return String.copyValueOf(passwordRetypeField.getPassword());
+	}
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	public JLabel getEmailMessage() {
+		return emailMessage;
+	}
+	public JLabel getPasswordMessage() {
+		return passwordMessage;
+	}
+	
+	public JLabel getWarningMessage() {
+		return warningMessage;
+	}
+	public JButton getBtnLogin(){
+		return btnLogin;
+	}
+	
+	public JButton getBtnRegister(){
+		return btnRegister;
 	}
 }

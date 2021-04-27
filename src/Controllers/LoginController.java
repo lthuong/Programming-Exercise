@@ -1,51 +1,66 @@
 package Controllers;
 
+import ConnectDB.UserDAO;
+import Models.User;
 import Views.LoginView;
-import Views.Registration;
+import Views.RegisterView;
 import Views.UserInterface;
 
 public class LoginController {
-	private LoginView l;
 	
-	public LoginController(LoginView l_view)
-	{
-		l = l_view;
+	UserDAO userDAO = new UserDAO();
+	private LoginView loginView;
+	
+	public LoginController(LoginView l_view) {
+		loginView = l_view;
 		initView();
 	}
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		l.setVisible(true);
-		l.getBtnLogin().addActionListener(e -> login());
-		l.getBtnRegister().addActionListener(e -> register());
+		loginView.setVisible(true);
+		loginView.getBtnLogin().addActionListener(e -> login());
+		loginView.getBtnRegister().addActionListener(e -> redirectRegisterPage());
+		loginView.getShowPasswordCheckbox().addActionListener(e -> handleShowPassword());
 	}
 	
-	// view changed
-	private void register() {
-		Registration registerFrame = new Registration();
+	private void redirectRegisterPage() {
+		RegisterView registerFrame = new RegisterView();
+		new RegisterController(registerFrame);
 		registerFrame.setVisible(true);
-		l.dispose();
+		loginView.dispose();
 	}
 
 	private void login()
 	{
 		boolean isFormBlank = false;
-		if  (l.getEmail().equals("") || l.getPW().equals("")) {
+		if  (loginView.getEmail().equals("") || loginView.getPW().equals("")) {
 			isFormBlank = true;
-			l.getWarningMessage().setText("Fields can not be blank");
+			loginView.getWarningMessage().setText("Fields can not be blank");
 		} else {
-			l.getWarningMessage().setText("");
+			loginView.getWarningMessage().setText("");
 		}
 		
 		if (!isFormBlank) {
-			if (l.getUserDAO().checkLogin(l.getEmail(), l.getPW())) {
+			if (userDAO.checkLogin(loginView.getEmail(), loginView.getPW())) {
+				userDAO.addToOnlineUsers(loginView.getEmail());
+				User user = new User(loginView.getEmail());
 				UserInterface UIFrame = new UserInterface();
+				new UserInterfaceController(UIFrame, user);
 				UIFrame.setVisible(true);
-				l.dispose();   
+				loginView.dispose();   
 			}
 			 else {
-				l.getWarningMessage().setText("Account not existed! Please register");
+				 loginView.getWarningMessage().setText("Account not existed! Please register");
 			}
 		}
 	}
+	
+	private void handleShowPassword() {
+		if(loginView.getShowPasswordCheckbox().isSelected())
+			loginView.getPasswordField().setEchoChar((char)0);
+		else
+			loginView.getPasswordField().setEchoChar('*');
+	}
+	
 }

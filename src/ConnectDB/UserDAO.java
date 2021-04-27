@@ -87,65 +87,65 @@ public class UserDAO {
 		}
 		return status;
 	}
-//	/**
-//	 * @param email is email input from Login Frame
-//	 * We add this Email to online Users in database.
-//	 */
-//	public static void addToOnlineUsers(String email)
-//	{
-//		try {
-//			String query = "insert into test.online values ( ? )";
-//			PreparedStatement preparedStmt = conn.prepareStatement(query);
-//			preparedStmt.setString(1,email);
-//		      // execute the java preparedstatement
-//		    preparedStmt.executeUpdate();
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	/**
-//	 * @param email is email from logged in admin/customer/worker
-//	 * if he logs out, database will delete him from online users.
-//	 */
-//	public static void removeFromOnlineUsers(String email)
-//	{
-//		try {
-//			String query = "delete from test.online where onlineuser = ? ";
-//			PreparedStatement preparedStmt = conn.prepareStatement(query);
-//			preparedStmt.setString(1,email);
-//		      // execute the java preparedstatement
-//		    preparedStmt.executeUpdate();
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	/**
-//	 * @param email is the email input from login frame
-//	 * @return 1 if he/she is already logged in
-//	 */
-//	public static int checkOnlineUser(String email)
-//	{
-//		try {
-//			String query = "select exists(select * from online where onlineuser = ? )";
-//			PreparedStatement preparedStmt = conn.prepareStatement(query);
-//			preparedStmt.setString(1,email);
-//		    // execute the java preparedstatement
-//		    ResultSet rs = preparedStmt.executeQuery();
-//		    rs.next();
-//		    return (rs.getInt(1));
-//			
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return 0;
-//		}
-//	}
+	/**
+	 * @param email is email input from Login Frame
+	 * We add this Email to online Users in database.
+	 */
+	public void addToOnlineUsers(String email) {
+		try {
+			conn = DBConnection.getConnection(); 
+			String query = "INSERT INTO ProgEx.online_users values ( ? )";
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt.setString(1,email);
+		    preparedStmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @param email is email from logged in admin/customer/worker
+	 * if he logs out, database will delete him from online users.
+	 */
+	public void removeFromOnlineUsers(String email)
+	{
+		try {
+			conn = DBConnection.getConnection(); 
+			String query = "delete from test.online where onlineuser = ? ";
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt.setString(1,email);
+		      // execute the java preparedstatement
+		    preparedStmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * @param email is the email input from login frame
+	 * @return 1 if he/she is already logged in
+	 */
+	public int checkOnlineUser(String email)
+	{
+		try {
+			conn = DBConnection.getConnection(); 
+			String query = "select exists(select * from online where onlineuser = ? )";
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt.setString(1,email);
+		    // execute the java preparedstatement
+		    ResultSet rs = preparedStmt.executeQuery();
+		    rs.next();
+		    return (rs.getInt(1));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
 //	
 //	
 

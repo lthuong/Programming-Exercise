@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class UserInterface extends JFrame {
 
 	private JPanel contentPane;
-
+	private static JLabel lblWelcome;
 
 	/**
 	 * Create the frame.
@@ -24,8 +24,12 @@ public class UserInterface extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Succesful!!!");
-		lblNewLabel.setBounds(167, 96, 163, 40);
-		contentPane.add(lblNewLabel);
+		lblWelcome = new JLabel("");
+		lblWelcome.setBounds(109, 110, 227, 40);
+		contentPane.add(lblWelcome);
+	}
+	
+	public JLabel getWelcomeLabel() {
+		return lblWelcome;
 	}
 }

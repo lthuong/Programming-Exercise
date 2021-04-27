@@ -3,33 +3,25 @@ package Views;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import ConnectDB.UserDAO;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class LoginView extends JFrame {
 	
-	// cai nay toi khong hieu. nen vut vao controller. 
-	UserDAO userDAO = new UserDAO();
-	
 	private JPanel contentPane;
 	private JButton btnLogin;
 	private JButton btnRegister;
 	private JTextField textFieldUsername;
 	private JPasswordField passwordField;
+	private JCheckBox showPassword;
 	private JLabel warningMessage;
 	
-	
-
 	/**
 	 * Create the frame.
 	 */
@@ -53,13 +45,17 @@ public class LoginView extends JFrame {
 		textFieldUsername.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(99, 136, 61, 16);
+		lblPassword.setBounds(99, 119, 61, 16);
 		contentPane.add(lblPassword);
 		
 		passwordField = new JPasswordField();
 		lblPassword.setLabelFor(passwordField);
-		passwordField.setBounds(184, 131, 162, 26);
+		passwordField.setBounds(184, 114, 162, 26);
 		contentPane.add(passwordField);
+		
+		showPassword = new JCheckBox("show password");
+		showPassword.setBounds(194, 155, 162, 26);
+		contentPane.add(showPassword);
 		
 		btnLogin = new JButton("Login");
 		btnLogin.setBounds(99, 188, 100, 29);
@@ -77,7 +73,7 @@ public class LoginView extends JFrame {
 		warningMessage = new JLabel("");
 		warningMessage.setForeground(Color.RED);
 		warningMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		warningMessage.setBounds(187, 160, 220, 16);
+		warningMessage.setBounds(188, 140, 220, 16);
 		contentPane.add(warningMessage);
 	}
 	
@@ -93,12 +89,12 @@ public class LoginView extends JFrame {
 		return btnLogin;
 	}
 	
-	public JButton getBtnRegister(){
-		return btnRegister;
+	public JCheckBox getShowPasswordCheckbox(){
+		return showPassword;
 	}
 	
-	public UserDAO getUserDAO() {
-		return userDAO;
+	public JButton getBtnRegister(){
+		return btnRegister;
 	}
 
 	public JPanel getContentPane() {
