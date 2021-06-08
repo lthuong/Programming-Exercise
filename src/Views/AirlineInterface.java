@@ -8,28 +8,25 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-public class UserInterface extends JFrame {
+public class AirlineInterface extends JFrame {
 
 	private JPanel contentPane;
-	private static JLabel lblWelcome;
 
 	/**
 	 * Create the frame.
 	 */
-	public UserInterface() {
+	public AirlineInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(320, 180, 805, 509);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblWelcome = new JLabel("");
-		lblWelcome.setBounds(109, 110, 227, 40);
-		contentPane.add(lblWelcome);
+		JLabel lblNewLabel = new JLabel("Welcome to Airline Interface!");
+		lblNewLabel.setBounds(314, 208, 199, 50);
+		contentPane.add(lblNewLabel);
 	}
-	
-	public JLabel getWelcomeLabel() {
-		return lblWelcome;
-	}
+
 }

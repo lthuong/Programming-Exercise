@@ -6,16 +6,41 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	private String type;
+	
+	public User(String firstName, String lastName, String email, String password,String type) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.type = type;
+	}
+	
 	public User(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
-	public User(String email) {
+	
+
+	public User(String email,int id) {
 		super();
+		this.ID = id;
 		this.email = email;
 	}
+	
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 
 	public int getID() {
 		return ID;

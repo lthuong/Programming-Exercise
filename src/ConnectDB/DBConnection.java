@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 public class DBConnection {
 	static Connection conn = null;
 	static String username="root";
-	static String pwd="tuananh123";
-	static String connectionUrl = "jdbc:mysql://localhost:3306/progex?useTimezone=true&serverTimezone=UTC";
+	static String pwd="jdi190299";
+	static String connectionUrl = "jdbc:mysql://localhost:3306/airline?useTimezone=true&serverTimezone=UTC";
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
