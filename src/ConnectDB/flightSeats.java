@@ -11,7 +11,7 @@ import java.util.Map;
 
 import Models.Seat;
 
-/*
+/**
  * @author: Thien Huong Le
  */
 public class flightSeats {

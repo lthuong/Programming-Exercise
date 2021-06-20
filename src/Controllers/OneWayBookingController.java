@@ -13,6 +13,11 @@ import Ulti.DateUlti;
 import Views.OneWayBooking;
 import Views.UserFindsFlightsView;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 public class OneWayBookingController {
 	BookingDAO bookingDAO = new BookingDAO();
 	private OneWayBooking view;

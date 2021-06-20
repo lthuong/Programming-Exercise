@@ -14,6 +14,11 @@ import ConnectDB.BookingDAO;
 import Models.UserFindsFlightsModel;
 import Ulti.DateUlti;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 public class ReturnAwayBookingController {
 	BookingDAO bookingDAO = new BookingDAO();
 	private ReturnBookingAway view;

@@ -20,6 +20,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.border.LineBorder;
 
+/**
+ * 
+ * @author Tuan Anh Nguyen
+ * @author Thien Huong Le
+ *
+ */
 @SuppressWarnings("serial")
 public class LoginView extends JFrame {
 	

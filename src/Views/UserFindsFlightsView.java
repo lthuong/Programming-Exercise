@@ -21,10 +21,19 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import ConnectDB.BookingDAO;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 
 public class UserFindsFlightsView extends JFrame {
 	Border default_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , new Color(240,240,240));
@@ -49,25 +58,9 @@ public class UserFindsFlightsView extends JFrame {
 	private JComboBox comboBox_ow_to_input;
 	private JComboBox comboBox_return_from_input;
 	private JComboBox comboBox_return_to_input;
-	private String[] cities = {"Frankfurt","Hamburg","Berlin","Leipzig","M�nchen"};
 	private JDateChooser re_departure_input;
 	private JDateChooser re_return_input;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserFindsFlightsView frame = new UserFindsFlightsView();
-					frame.setVisible(true);
-					frame.start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	BookingDAO bookingDAO = new BookingDAO();
 
 	/**
 	 * Create the frame.
@@ -173,11 +166,11 @@ public class UserFindsFlightsView extends JFrame {
 		ow_confirm.setBounds(350, 311, 132, 37);
 		OnewayPanel.add(ow_confirm);
 		
-		comboBox_ow_from_input = new JComboBox(cities);
+		comboBox_ow_from_input = new JComboBox(bookingDAO.getDEPCities());
 		comboBox_ow_from_input.setBounds(330, 65, 169, 31);
 		OnewayPanel.add(comboBox_ow_from_input);
 		
-		comboBox_ow_to_input = new JComboBox(cities);
+		comboBox_ow_to_input = new JComboBox(bookingDAO.getARRCities());
 		comboBox_ow_to_input.setBounds(330, 114, 169, 31);
 		OnewayPanel.add(comboBox_ow_to_input);
 		
@@ -191,7 +184,7 @@ public class UserFindsFlightsView extends JFrame {
 		re_from_label.setBounds(210, 66, 110, 28);
 		ReturnPanel.add(re_from_label);
 		
-		comboBox_return_from_input = new JComboBox(cities);
+		comboBox_return_from_input = new JComboBox(bookingDAO.getDEPCities());
 		comboBox_return_from_input.setBounds(330, 65, 169, 31);
 		ReturnPanel.add(comboBox_return_from_input);
 		
@@ -200,7 +193,7 @@ public class UserFindsFlightsView extends JFrame {
 		re_to_label.setBounds(210, 114, 100, 28);
 		ReturnPanel.add(re_to_label);
 		
-		comboBox_return_to_input = new JComboBox(cities);
+		comboBox_return_to_input = new JComboBox(bookingDAO.getARRCities());
 		comboBox_return_to_input.setBounds(330, 114, 169, 31);
 		ReturnPanel.add(comboBox_return_to_input);
 		

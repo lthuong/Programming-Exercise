@@ -30,7 +30,9 @@ import ConnectDB.UserDAO;
 import ConnectDB.flightSeats;
 import Models.Flight;
 import Models.Seat;
+import Models.User;
 import Views.BookingSeatView;
+import Views.UserUI;
 
 /*
  * @author: Thien Huong Le
@@ -39,14 +41,16 @@ public class BookingSeatController {
 	private BookingSeatView view;
 	private Flight flight;
 	private Seat seat;
+	private User user;
 	flightSeats seatsDB = new flightSeats();
 	UserDAO userDAO = new UserDAO();
 	BookingDAO bookingDAO = new BookingDAO();
 	
-	public BookingSeatController(BookingSeatView view, Flight fl,Seat s) {
+	public BookingSeatController(BookingSeatView view, Flight fl,Seat s, User user) {
 		this.view = view;
 		this.flight = fl;
 		this.seat = s;
+		this.user = user;
 		initView();
 		initTableListener();
 		initBookingBtnListener();
@@ -229,7 +233,8 @@ public class BookingSeatController {
 						int seatId = seat.getSeatId();
 						String type = userDAO.getSeatType(seatId);
 						seatsDB.putSeat(seatId,chosenSeat,type);
-					    
+					    UserUI userView = new UserUI();
+					    new UserUIController(userView, user);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -10,6 +10,12 @@ import Views.BookingSeatView;
 import Views.UserFindsFlightsView;
 import Views.UserUI;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ * @author Thien Huong Le
+ *
+ */
 public class UserUIController {
 
 	UserDAO userDAO = new UserDAO();
@@ -41,7 +47,8 @@ public class UserUIController {
 							Flight f = new Flight(id_f);
 							Seat s = new Seat(id_s);
 							BookingSeatView frame = new BookingSeatView();
-							new BookingSeatController(frame,f,s);
+							new BookingSeatController(frame,f,s,model);
+							view.dispose();
 						} else {
 							// System.out.println("Seat is already booked!!!");
 						}
@@ -61,6 +68,7 @@ public class UserUIController {
 	private void findFlights() {
 		UserFindsFlightsView userInterface = new UserFindsFlightsView();
 		new UserFindsFlightsController(userInterface,model);
+		//view.dispose();
 	}
 
 	private void initView() {

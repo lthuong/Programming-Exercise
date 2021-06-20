@@ -22,20 +22,12 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 public class ReturnBookingBack extends BookingUI {
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ReturnBookingBack frame = new ReturnBookingBack();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	/**
 	 * Create the frame.
 	 */

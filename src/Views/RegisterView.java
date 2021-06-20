@@ -19,6 +19,12 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 
+/**
+ * 
+ * @author Tuan Anh Nguyen
+ * @author Thien Huong Le
+ *
+ */
 @SuppressWarnings("serial")
 public class RegisterView extends JFrame {
 	

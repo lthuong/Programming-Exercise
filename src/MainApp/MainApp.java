@@ -5,6 +5,11 @@ import java.awt.EventQueue;
 import Controllers.LoginController;
 import Views.LoginView;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 public class MainApp {
 
 	/**

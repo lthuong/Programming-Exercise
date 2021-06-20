@@ -1,5 +1,8 @@
 package Ulti;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class DateUlti {
 	
 	
@@ -17,6 +20,20 @@ public class DateUlti {
 		
 		answer = year*10000 + month*100 + day;
 		return answer;
+	}
+	
+	
+	
+	public static boolean dateValid(String dateDE, String dateARR) throws ParseException
+	{
+		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd"); 
+
+		java.util.Date dateDe = formatter.parse(dateDE);
+		java.util.Date dateArr = formatter.parse(dateARR);
+		if ( ( dateDe.compareTo(dateArr) > 0) || ( dateDe.compareTo(dateArr) == 0) )
+			return false;
+	     	
+		return true;
 	}
 	
 	

@@ -11,9 +11,13 @@ import Views.AdminInterface;
 import Views.AirlineInterface;
 import Views.LoginView;
 import Views.RegisterView;
-import Views.UserFindsFlightsView;
 import Views.UserUI;
 
+/**
+ * 
+ * @author Tuan Anh Nguyen
+ *
+ */
 public class LoginController {
 	
 	UserDAO userDAO = new UserDAO();
@@ -27,6 +31,7 @@ public class LoginController {
 	}
 
 	private void initView() {
+		// TODO Auto-generated method stub
 		loginView.setVisible(true);
 		loginView.getBtnLogin().addActionListener(e -> login());
 		loginView.getBtnRegister().addActionListener(e -> redirectRegisterPage());
@@ -79,11 +84,13 @@ public class LoginController {
 			} else if (airlineDAO.checkLogin(loginView.getEmail(), loginView.getPW())) {
 				Airline airline = new Airline(loginView.getEmail());
 				AirlineInterface AirlineFrame = new AirlineInterface();
+				new AirlineInterfaceController(AirlineFrame, airline);
 				AirlineFrame.setVisible(true);
-				loginView.dispose();    
+				loginView.dispose();     
 			} else if (adminDAO.checkLogin(loginView.getEmail(), loginView.getPW())) {
 				Admin admin = new Admin(loginView.getEmail());
 				AdminInterface AdminFrame = new AdminInterface();
+				new AdminInterfaceController(AdminFrame);
 				AdminFrame.setVisible(true);
 				loginView.dispose(); 
 			} else {
@@ -91,7 +98,6 @@ public class LoginController {
 			}
 		}
 	}
-	
 	private void handleShowPassword() {
 		if(loginView.getShowPasswordCheckbox().isSelected()) loginView.getPasswordField().setEchoChar((char)0);
 		else loginView.getPasswordField().setEchoChar('*');

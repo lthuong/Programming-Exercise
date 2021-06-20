@@ -6,6 +6,11 @@ import Ulti.Validator;
 import Views.LoginView;
 import Views.RegisterView;
 
+/**
+ * 
+ * @author Tuan Anh Nguyen
+ *
+ */
 public class RegisterController {
 	
 	UserDAO userDAO = new UserDAO();

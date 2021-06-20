@@ -8,9 +8,15 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 
 public class BookingDAO {
 	//private static ConnectDB connectDB = null;
@@ -41,6 +47,19 @@ public class BookingDAO {
 			PreparedStatement pst2 = conn.prepareStatement(sql2);
 			pst2.setInt(1,id_flights);
 			pst2.executeUpdate();
+			
+			String sql3 = "UPDATE users SET current_budget = current_budget - ? WHERE user_id = ?";
+			PreparedStatement pst3 = conn.prepareStatement(sql3);
+			pst3.setFloat(1,price);
+			pst3.setInt(2,id_cus);
+			pst3.executeUpdate();
+			
+			String sql4 = "INSERT INTO user_bills VALUES(?,?,?)";
+			PreparedStatement pst4 = conn.prepareStatement(sql4);
+			pst4.setInt(1,id_cus);
+			pst4.setInt(2,id_flights);
+			pst4.setFloat(3,price);
+			pst4.executeUpdate();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -329,6 +348,101 @@ public class BookingDAO {
 
 		return city;
 	}
+	
+	public String[] getDEPCities() {
+		HashSet<String> cities = new HashSet(); 
+		conn = DBConnection.getConnection();
+		String sql = "select city_dep from flights_line";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				cities.add(rs.getString("city_dep"));
+			}
+			String[] array = new String[cities.size()];
+		    cities.toArray(array);
+		    return array;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String[] getARRCities() {
+		HashSet<String> cities = new HashSet(); 
+		conn = DBConnection.getConnection();
+		String sql = "select city_arr from flights_line";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				cities.add(rs.getString("city_arr"));
+			}
+			String[] array = new String[cities.size()];
+		    cities.toArray(array);
+		    return array;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean checkReturnBooking(String from,String to) {
+		conn = DBConnection.getConnection();
+		String sql = "select city_arr and city_dep from flights_line where city_dep = ? and city_arr = ? ";
+		String sql2 = "select city_arr and city_dep from flights_line where city_arr = ? and city_dep = ? ";
+		PreparedStatement pst;
+		PreparedStatement pst2;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1,from);
+			pst.setString(2,to);
+			ResultSet rs = pst.executeQuery();
+			
+			pst2 = conn.prepareStatement(sql2);
+			pst2.setString(1,from);
+			pst2.setString(2,to);
+			ResultSet rs2 = pst2.executeQuery();
+			
+			if(rs.next() && rs2.next())
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean checkOnewayBooking(String from,String to) {
+		conn = DBConnection.getConnection();
+		String sql = "select city_dep, city_arr from flights_line where city_dep = ? and city_arr = ? ";
+		PreparedStatement pst;
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1,from);
+			pst.setString(2,to);
+			ResultSet rs = pst.executeQuery();
+			
+			if(rs.next())
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
 	
 
 }

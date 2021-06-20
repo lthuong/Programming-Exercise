@@ -3,10 +3,15 @@ package ConnectDB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * 
+ * @author Tuan Anh Nguyen
+ *
+ */
 public class DBConnection {
 	static Connection conn = null;
 	static String username="root";
-	static String pwd="jdi190299";
+	static String pwd="123456789";
 	static String connectionUrl = "jdbc:mysql://localhost:3306/airline?useTimezone=true&serverTimezone=UTC";
 	public static Connection getConnection() {
 		try {

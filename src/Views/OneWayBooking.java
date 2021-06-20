@@ -30,24 +30,13 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 
 public class OneWayBooking extends BookingUI{
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OneWayBooking frame = new OneWayBooking();
-					frame.setVisible(true);
-					frame.start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public OneWayBooking() {
 		super();

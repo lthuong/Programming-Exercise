@@ -27,6 +27,13 @@ import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ * @author Thien Huong Le
+ *
+ */
+
 public class UserUI extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
@@ -38,23 +45,6 @@ public class UserUI extends JFrame {
 	
 	private JTextField textField_wallet;
 	private Image walletLogo = new ImageIcon(this.getClass().getResource("/walletIcon.png")).getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserUI frame = new UserUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

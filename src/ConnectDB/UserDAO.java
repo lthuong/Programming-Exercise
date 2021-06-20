@@ -22,19 +22,9 @@ import Models.User;
  * Class ConnectDB is responsible for all functions/methods that need to be connected to the database.
  */
 public class UserDAO {
-	
-	//private static ConnectDB connectDB = null;
+
 	Connection conn = null;
 	PreparedStatement preparedStmt;
-	/**
-	 * @return Connection 
-	 */
-//	public static ConnectDB getInstance(){
-//		if(connectDB == null){
-//			connectDB = new ConnectDB();
-//		}
-//		return connectDB;
-//	}
 
 	public boolean checkLogin(String email, String password) {
 		conn = DBConnection.getConnection(); 

@@ -14,6 +14,11 @@ import Views.OneWayBooking;
 import Views.ReturnBookingBack;
 import Views.UserFindsFlightsView;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 public class ReturnBackBookingController {
 	BookingDAO bookingDAO = new BookingDAO();
 	private ReturnBookingBack view;

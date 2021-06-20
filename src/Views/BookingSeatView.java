@@ -62,12 +62,6 @@ public class BookingSeatView extends JFrame {
 	private JTextField selectedSeat; 
 	private JLabel flightLabel;
 
-	
-	/*
-	public static void main(String[] args) {
-		BookingSeatView frame = new BookingSeatView();
-	}
-	*/
 
 	public BookingSeatView() {
 		frame.getContentPane().setForeground(Color.GRAY);

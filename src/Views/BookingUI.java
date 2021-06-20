@@ -30,6 +30,11 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Thanh Tung Trinh
+ *
+ */
 
 public class BookingUI extends JFrame {
 	Border default_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , new Color(240,240,240));
@@ -84,22 +89,6 @@ public class BookingUI extends JFrame {
 	private JComboBox comboBox_transit;
 	private JButton btn_book_direct;
 	private String label = "One Way";
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OneWayBooking frame = new OneWayBooking();
-					frame.setVisible(true);
-					frame.start();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
