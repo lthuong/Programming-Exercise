@@ -34,8 +34,10 @@ public class ReturnBookingBack extends BookingUI {
 	public ReturnBookingBack() {
 		super();
 		JLabel lbl_titel = new JLabel("Return");
-		lbl_titel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_titel.setBounds(266, 10, 150, 24);
+		lbl_titel.setForeground(new Color(255, 127, 80));
+		lbl_titel.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_titel.setFont(new Font("Rockwell", Font.BOLD, 22));
+		lbl_titel.setBounds(266, 11, 150, 24);
 		getContentPane().add(lbl_titel);
 	}
 	

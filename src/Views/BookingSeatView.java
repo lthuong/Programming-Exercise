@@ -71,6 +71,7 @@ public class BookingSeatView extends JFrame {
 		frame.getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		frame.setBounds(200,200,951,566);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null);
 		
 		seatTable1.setBackground(Color.WHITE);
 		seatTable1.setBounds(76, 115, 784, 163);

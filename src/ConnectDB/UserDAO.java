@@ -30,7 +30,7 @@ public class UserDAO {
 		conn = DBConnection.getConnection(); 
 		boolean isUser = false;
 		try {
-			preparedStmt = conn.prepareStatement("SELECT * FROM users WHERE user_email = ? AND user_password = ?");
+			preparedStmt = conn.prepareStatement("SELECT * FROM users WHERE user_email = ? AND user_password = md5(?)");
 			preparedStmt.setString(1, email);
 			preparedStmt.setString(2, password);
 			ResultSet rs = preparedStmt.executeQuery();
@@ -47,7 +47,7 @@ public class UserDAO {
 	public int getUserID(String email,String password) {
 		conn = DBConnection.getConnection();
 		try {
-			preparedStmt = conn.prepareStatement("SELECT user_id FROM users WHERE user_email = ? AND user_password = ?");
+			preparedStmt = conn.prepareStatement("SELECT user_id FROM users WHERE user_email = ? AND user_password = md5(?)");
 			preparedStmt.setString(1, email);
 			preparedStmt.setString(2, password);
 			ResultSet rs = preparedStmt.executeQuery();
@@ -57,6 +57,27 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public User getUserById(int id) {
+		conn = DBConnection.getConnection();
+		User user = new User();
+		try {
+			preparedStmt = conn.prepareStatement("SELECT * FROM users WHERE user_id = ?");
+			preparedStmt.setInt(1, id);
+			ResultSet rs = preparedStmt.executeQuery();
+			while(rs.next()) {
+				user.setID(rs.getInt("user_id"));
+				user.setFirstName(rs.getString("user_firstName"));
+			    user.setLastName(rs.getString("user_lastName"));
+				user.setEmail(rs.getString("user_email"));
+				user.setPassword(rs.getString("user_password"));
+				user.setType(rs.getString("user_type"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 	
 	
@@ -94,7 +115,7 @@ public class UserDAO {
 		int status = 0;
 		try {
 			conn = DBConnection.getConnection();
-			preparedStmt = conn.prepareStatement("INSERT INTO users (user_email, user_firstName, user_lastName, user_password,user_type,current_budget) VALUES(?,?,?,?, ? , ? )");
+			preparedStmt = conn.prepareStatement("INSERT INTO users (user_email, user_firstName, user_lastName, user_password,user_type,current_budget) VALUES(?,?,?,md5(?), ? , ? )");
 			preparedStmt.setString(1, user.getEmail());
 			preparedStmt.setString(2, user.getFirstName());
 			preparedStmt.setString(3, user.getLastName());

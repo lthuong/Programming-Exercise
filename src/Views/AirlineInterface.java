@@ -45,8 +45,6 @@ public class AirlineInterface extends JFrame {
 	private JLabel warningMsgTo;
 	private JLabel warningMsgStartDate;
 	private JLabel warningMsgEndDate;
-	private JLabel successMsg;
-
 	
 	public AirlineInterface() {
 		setBackground(Color.WHITE);
@@ -223,12 +221,6 @@ public class AirlineInterface extends JFrame {
 		warningMsgEndDate.setBounds(520, 168, 139, 15);
 		contentPane.add(warningMsgEndDate);
 		
-		successMsg = new JLabel("");
-		successMsg.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		successMsg.setForeground(Color.RED);
-		successMsg.setBounds(300, 345, 178, 15);
-		contentPane.add(successMsg);
-		
 		btnLogout = new JButton("LOG OUT");
 		btnLogout.setBackground(new Color(255, 255, 255));
 		btnLogout.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
@@ -294,7 +286,5 @@ public class AirlineInterface extends JFrame {
 	public JLabel getWarningMsgEndDate() {
 		return warningMsgEndDate;
 	}
-	public JLabel getSuccessMsg() {
-		return successMsg;
-	}
+
 }

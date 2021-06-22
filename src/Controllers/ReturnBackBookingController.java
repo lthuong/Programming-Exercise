@@ -4,15 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import ConnectDB.BookingDAO;
+import ConnectDB.UserDAO;
 import Models.User;
 import Models.UserFindsFlightsModel;
 import Ulti.DateUlti;
 import Views.OneWayBooking;
 import Views.ReturnBookingBack;
 import Views.UserFindsFlightsView;
+import Views.UserUI;
 
 /**
  * 
@@ -21,6 +25,7 @@ import Views.UserFindsFlightsView;
  */
 public class ReturnBackBookingController {
 	BookingDAO bookingDAO = new BookingDAO();
+	UserDAO userDAO = new UserDAO();
 	private ReturnBookingBack view;
 	private UserFindsFlightsModel userModel;
 	private boolean check = false;
@@ -68,23 +73,41 @@ public class ReturnBackBookingController {
 	
 
 	private void bookTransitFlight() {
+		if (userDAO.getCurrentBudget(userModel.getUser_id()) 
+                < Float.parseFloat(view.getTextField_price1().getText())) {
+            String message = "Your budget ist not enough\n"
+                    + "to book a ticket!!";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_transit().getText()), userModel.getUser_id(),
 				Float.parseFloat(view.getTextField_price1().getText()), view.getComboBox().getSelectedItem().toString());
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_transit2().getText()), userModel.getUser_id(),
 				Float.parseFloat(view.getTextField_price2().getText()), view.getComboBox().getSelectedItem().toString());
+	    UserUI userView = new UserUI();
+	    new UserUIController(userView, userDAO.getUserById(userModel.getUser_id()));
 		view.dispose();
 	}
 
 	private void bookDirectFlight() {
+		if (userDAO.getCurrentBudget(userModel.getUser_id()) 
+                < Float.parseFloat(view.getTextField_price_direct().getText())) {
+            String message = "Your budget ist not enough\n"
+                    + "to book a ticket!!";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_direct().getText()), userModel.getUser_id(),
 				Float.parseFloat(view.getTextField_price_direct().getText()), view.getComboBox().getSelectedItem().toString());
+	    UserUI userView = new UserUI();
+	    new UserUIController(userView, userDAO.getUserById(userModel.getUser_id()));
 		view.dispose();
 	}
 
 
 	private void initTableDirectController() {
 		
-		view.getTable_direct().setCellSelectionEnabled(true);
+		// view.getTable_direct().setCellSelectionEnabled(true);
 		
 		
 		view.getTable_direct().addMouseListener(new java.awt.event.MouseAdapter() {  
@@ -122,7 +145,7 @@ public class ReturnBackBookingController {
 	
 	private void initTableDirectTransitController()
 	{
-		view.getTable_transit().setCellSelectionEnabled(true);
+		// view.getTable_transit().setCellSelectionEnabled(true);
 		view.getTable_transit().addMouseListener(new java.awt.event.MouseAdapter() {  
 			@Override
 			 public void mouseClicked(java.awt.event.MouseEvent evt) {  

@@ -48,7 +48,6 @@ public class AdminInterface extends JFrame {
 	private JTextField textFieldPremiumPrice;
 	private JButton btnConfirmRequest;
 	private JButton btnDeleteRequest;
-	private JLabel lblMessage;
 	
 	private DefaultTableModel tbModel;
 	private List<String[]> requests = new ArrayList<>();
@@ -272,12 +271,6 @@ public class AdminInterface extends JFrame {
 		btnDeleteRequest.setBounds(756, 40, 96, 29);
 		contentPane.add(btnDeleteRequest);
 		
-		lblMessage = new JLabel("");
-		lblMessage.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-		lblMessage.setForeground(Color.RED);
-		lblMessage.setBounds(287, 440, 177, 16);
-		contentPane.add(lblMessage);
-		
 		DefaultTableModel tbModel = (DefaultTableModel)table.getModel();
 		adminDAO.getRequestFromAirline(tbModel, requests);
 	}
@@ -326,7 +319,5 @@ public class AdminInterface extends JFrame {
 	public List<String[]> getRequests() {
 		return requests;
 	}
-	public JLabel getMessage() {
-		return lblMessage;
-	}
+
 }

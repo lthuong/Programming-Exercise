@@ -29,10 +29,13 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
 
 /**
  * 
  * @author Thanh Tung Trinh
+ * @author Thien Huong Le
  *
  */
 
@@ -88,7 +91,6 @@ public class BookingUI extends JFrame {
 	private JComboBox comboBox;
 	private JComboBox comboBox_transit;
 	private JButton btn_book_direct;
-	private String label = "One Way";
 
 	/**
 	 * Create the frame.
@@ -106,8 +108,10 @@ public class BookingUI extends JFrame {
 	public BookingUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 708, 565);
+		setBounds(100, 100, 708, 590);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -127,8 +131,8 @@ public class BookingUI extends JFrame {
 		lbl_directflight.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_directflight.setOpaque(true);
 		lbl_directflight.setBackground(new Color(175, 238, 238));
-		lbl_directflight.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_directflight.setBounds(0, 37, 332, 31);
+		lbl_directflight.setFont(new Font("Rockwell", Font.BOLD, 16));
+		lbl_directflight.setBounds(0, 44, 332, 31);
 		contentPane.add(lbl_directflight);
 		
 		lbl_transitflight = new JLabel("Transit Flight");
@@ -143,20 +147,21 @@ public class BookingUI extends JFrame {
 				table_transit.setVisible(true);
 			}
 		});
-		lbl_transitflight.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbl_transitflight.setFont(new Font("Rockwell", Font.BOLD, 16));
 		lbl_transitflight.setOpaque(true);
-		lbl_transitflight.setBackground(new Color(0, 255, 255));
+		lbl_transitflight.setBackground(new Color(152, 251, 152));
 		lbl_transitflight.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_transitflight.setBounds(331, 37, 363, 31);
+		lbl_transitflight.setBounds(331, 44, 363, 31);
 		contentPane.add(lbl_transitflight);
 		
 		direct_pane = new JPanel();
-		direct_pane.setBounds(0, 70, 694, 473);
+		direct_pane.setBackground(SystemColor.inactiveCaptionBorder);
+		direct_pane.setBounds(0, 70, 694, 481);
 		contentPane.add(direct_pane);
 		direct_pane.setLayout(null);
 		
 		scrollPane_direct = new JScrollPane();
-		scrollPane_direct.setBounds(0, 0, 694, 256);
+		scrollPane_direct.setBounds(0, 5, 694, 250);
 		direct_pane.add(scrollPane_direct);
 		table_direct = new JTable();
 		table_direct.setModel(new DefaultTableModel(
@@ -183,116 +188,131 @@ public class BookingUI extends JFrame {
 		
 		
 		lbl_flight_direct = new JLabel("Flight");
-		lbl_flight_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_flight_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_flight_direct.setBounds(83, 274, 60, 20);
+		lbl_flight_direct.setForeground(new Color(112, 128, 144));
+		lbl_flight_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_flight_direct.setBounds(60, 271, 60, 20);
 		direct_pane.add(lbl_flight_direct);
 		
 		textField_flight_direct = new JTextField();
-		textField_flight_direct.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		textField_flight_direct.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_flight_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_flight_direct.setEditable(false);
-		textField_flight_direct.setBounds(153, 274, 111, 20);
+		textField_flight_direct.setBounds(125, 272, 115, 21);
 		direct_pane.add(textField_flight_direct);
 		textField_flight_direct.setColumns(10);
 		
 		JLabel lbl_carrier_direct = new JLabel("Carrier");
-		lbl_carrier_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_carrier_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_carrier_direct.setBounds(315, 274, 60, 20);
+		lbl_carrier_direct.setForeground(new Color(112, 128, 144));
+		lbl_carrier_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_carrier_direct.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_carrier_direct.setBounds(290, 271, 60, 20);
 		direct_pane.add(lbl_carrier_direct);
 		
 		textField_carrier_direct = new JTextField();
-		textField_carrier_direct.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		textField_carrier_direct.setFont(new Font("Arial", Font.BOLD, 11));
 		textField_carrier_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_carrier_direct.setEditable(false);
-		textField_carrier_direct.setBounds(385, 274, 111, 20);
+		textField_carrier_direct.setBounds(355, 272, 115, 21);
 		direct_pane.add(textField_carrier_direct);
 		textField_carrier_direct.setColumns(10);
 		
 		lbl_date_direct = new JLabel("Date");
-		lbl_date_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_date_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_date_direct.setBounds(510, 274, 60, 20);
+		lbl_date_direct.setForeground(new Color(112, 128, 144));
+		lbl_date_direct.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_date_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_date_direct.setBounds(510, 272, 60, 20);
 		direct_pane.add(lbl_date_direct);
 		
 		textField_date_direct = new JTextField();
+		textField_date_direct.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_date_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_date_direct.setEditable(false);
-		textField_date_direct.setBounds(575, 274, 111, 20);
+		textField_date_direct.setBounds(549, 272, 115, 21);
 		direct_pane.add(textField_date_direct);
 		textField_date_direct.setColumns(10);
 		
 		lbl_fromto = new JLabel("From-To");
-		lbl_fromto.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_fromto.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_fromto.setBounds(68, 312, 75, 20);
+		lbl_fromto.setForeground(new Color(112, 128, 144));
+		lbl_fromto.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_fromto.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_fromto.setBounds(60, 312, 75, 20);
 		direct_pane.add(lbl_fromto);
 		
 		textField_fromto_direct = new JTextField();
+		textField_fromto_direct.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_fromto_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_fromto_direct.setEditable(false);
-		textField_fromto_direct.setBounds(153, 312, 111, 20);
+		textField_fromto_direct.setBounds(125, 312, 115, 21);
 		direct_pane.add(textField_fromto_direct);
 		textField_fromto_direct.setColumns(10);
 		
 		lbl_time_direct = new JLabel("Time");
-		lbl_time_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_time_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_time_direct.setBounds(68, 351, 60, 20);
+		lbl_time_direct.setForeground(new Color(112, 128, 144));
+		lbl_time_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_time_direct.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_time_direct.setBounds(60, 351, 60, 20);
 		direct_pane.add(lbl_time_direct);
 		
 		textField_time_direct = new JTextField();
+		textField_time_direct.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_time_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_time_direct.setEditable(false);
-		textField_time_direct.setBounds(153, 351, 111, 20);
+		textField_time_direct.setBounds(125, 352, 115, 21);
 		direct_pane.add(textField_time_direct);
 		textField_time_direct.setColumns(10);
 		
 		textField_price_direct = new JTextField();
+		textField_price_direct.setFont(new Font("Arial", Font.PLAIN, 12));
 		textField_price_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_price_direct.setEditable(false);
-		textField_price_direct.setBounds(510, 353, 111, 20);
+		textField_price_direct.setBounds(485, 352, 60, 21);
 		direct_pane.add(textField_price_direct);
 		textField_price_direct.setColumns(10);
 		
-		btn_book_direct = new JButton("Book");
-		btn_book_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btn_book_direct.setBounds(303, 415, 105, 36);
+		btn_book_direct = new JButton("BOOK");
+		btn_book_direct.setBorder(new LineBorder(new Color(0, 0, 0)));
+		btn_book_direct.setBackground(new Color(255, 255, 255));
+		btn_book_direct.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btn_book_direct.setBounds(300, 415, 105, 35);
 		direct_pane.add(btn_book_direct);
 		
 		JLabel lbl_duration_direct = new JLabel("Duration");
-		lbl_duration_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_duration_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_duration_direct.setBounds(312, 312, 75, 20);
+		lbl_duration_direct.setForeground(new Color(112, 128, 144));
+		lbl_duration_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_duration_direct.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_duration_direct.setBounds(290, 312, 75, 20);
 		direct_pane.add(lbl_duration_direct);
 		
 		textField_duration_direct = new JTextField();
+		textField_duration_direct.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_duration_direct.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_duration_direct.setEditable(false);
-		textField_duration_direct.setBounds(385, 312, 111, 20);
+		textField_duration_direct.setBounds(355, 312, 115, 21);
 		direct_pane.add(textField_duration_direct);
 		textField_duration_direct.setColumns(10);
 		
 		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Arial", Font.BOLD, 11));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Economy", "Premium"}));
-		comboBox.setBounds(385, 352, 111, 22);
+		comboBox.setBounds(355, 352, 115, 21);
 		direct_pane.add(comboBox);
 		
 		JLabel lbl_price_direct = new JLabel("Price");
-		lbl_price_direct.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_price_direct.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_price_direct.setBounds(315, 351, 60, 20);
+		lbl_price_direct.setForeground(new Color(112, 128, 144));
+		lbl_price_direct.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_price_direct.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_price_direct.setBounds(290, 351, 60, 20);
 		direct_pane.add(lbl_price_direct);
 		
 		transit_pane = new JPanel();
-		transit_pane.setBounds(0, 70, 694, 473);
+		transit_pane.setBackground(SystemColor.inactiveCaptionBorder);
+		transit_pane.setBounds(0, 70, 694, 481);
 		contentPane.add(transit_pane);
 		transit_pane.setLayout(null);
 		
 		scrollPane_transit = new JScrollPane();
 		scrollPane_transit.setBackground(Color.WHITE);
-		scrollPane_transit.setBounds(0, 0, 694, 256);
+		scrollPane_transit.setBounds(0, 5, 694, 250);
 		transit_pane.add(scrollPane_transit);
 		
 		table_transit = new JTable();
@@ -321,32 +341,37 @@ public class BookingUI extends JFrame {
 		
 		
 		lbl_flight_transit2 = new JLabel("Flight(Transit)");
-		lbl_flight_transit2.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_flight_transit2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_flight_transit2.setBounds(210, 274, 145, 20);
+		lbl_flight_transit2.setForeground(new Color(112, 128, 144));
+		lbl_flight_transit2.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_flight_transit2.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_flight_transit2.setBounds(220, 271, 145, 20);
 		transit_pane.add(lbl_flight_transit2);
 		
 		textField_flight_transit2 = new JTextField();
+		textField_flight_transit2.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_flight_transit2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_flight_transit2.setEditable(false);
-		textField_flight_transit2.setBounds(353, 274, 111, 20);
+		textField_flight_transit2.setBounds(343, 274, 111, 20);
 		transit_pane.add(textField_flight_transit2);
 		textField_flight_transit2.setColumns(10);
 		
 		textField_carrier_transit = new JTextField();
+		textField_carrier_transit.setFont(new Font("Arial", Font.BOLD, 11));
 		textField_carrier_transit.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_carrier_transit.setEditable(false);
-		textField_carrier_transit.setBounds(563, 274, 111, 20);
+		textField_carrier_transit.setBounds(553, 274, 125, 20);
 		transit_pane.add(textField_carrier_transit);
 		textField_carrier_transit.setColumns(10);
 		
 		lbl_flight_transit = new JLabel("Flight");
-		lbl_flight_transit.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_flight_transit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_flight_transit.setBounds(10, 274, 60, 20);
+		lbl_flight_transit.setForeground(new Color(112, 128, 144));
+		lbl_flight_transit.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_flight_transit.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_flight_transit.setBounds(10, 271, 60, 20);
 		transit_pane.add(lbl_flight_transit);
 		
 		textField_flight_transit = new JTextField();
+		textField_flight_transit.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_flight_transit.setEditable(false);
 		textField_flight_transit.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_flight_transit.setBounds(80, 274, 111, 20);
@@ -354,30 +379,36 @@ public class BookingUI extends JFrame {
 		textField_flight_transit.setColumns(10);
 		
 		lbl_carrier_transit = new JLabel("Carrier");
-		lbl_carrier_transit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_carrier_transit.setBounds(481, 274, 60, 20);
+		lbl_carrier_transit.setForeground(new Color(112, 128, 144));
+		lbl_carrier_transit.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_carrier_transit.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_carrier_transit.setBounds(491, 271, 60, 20);
 		transit_pane.add(lbl_carrier_transit);
 		
 		JLabel lbl_date_transit = new JLabel("Date");
-		lbl_date_transit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_date_transit.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_date_transit.setBounds(481, 312, 60, 20);
+		lbl_date_transit.setForeground(new Color(112, 128, 144));
+		lbl_date_transit.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_date_transit.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_date_transit.setBounds(491, 312, 60, 20);
 		transit_pane.add(lbl_date_transit);
 		
 		textField_date_transit = new JTextField();
+		textField_date_transit.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_date_transit.setEditable(false);
 		textField_date_transit.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_date_transit.setBounds(563, 312, 111, 20);
+		textField_date_transit.setBounds(553, 312, 125, 20);
 		transit_pane.add(textField_date_transit);
 		textField_date_transit.setColumns(10);
 		
 		JLabel lbl_fromto_transit1 = new JLabel("From-To");
-		lbl_fromto_transit1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_fromto_transit1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_fromto_transit1.setBounds(0, 312, 75, 20);
+		lbl_fromto_transit1.setForeground(new Color(112, 128, 144));
+		lbl_fromto_transit1.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_fromto_transit1.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_fromto_transit1.setBounds(10, 312, 75, 20);
 		transit_pane.add(lbl_fromto_transit1);
 		
 		textField_fromto_transit1 = new JTextField();
+		textField_fromto_transit1.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_fromto_transit1.setEditable(false);
 		textField_fromto_transit1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_fromto_transit1.setBounds(80, 312, 111, 20);
@@ -385,12 +416,14 @@ public class BookingUI extends JFrame {
 		textField_fromto_transit1.setColumns(10);
 		
 		JLabel lbl_time_transit1 = new JLabel("Time");
-		lbl_time_transit1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_time_transit1.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_time_transit1.setForeground(new Color(112, 128, 144));
+		lbl_time_transit1.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_time_transit1.setHorizontalAlignment(SwingConstants.LEFT);
 		lbl_time_transit1.setBounds(10, 351, 60, 20);
 		transit_pane.add(lbl_time_transit1);
 		
 		textField_time_transit1 = new JTextField();
+		textField_time_transit1.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_time_transit1.setEditable(false);
 		textField_time_transit1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_time_transit1.setBounds(80, 351, 111, 20);
@@ -400,66 +433,84 @@ public class BookingUI extends JFrame {
 		
 		
 		lbl_fromto_transit2 = new JLabel("From-To(Transit)");
-		lbl_fromto_transit2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_fromto_transit2.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_fromto_transit2.setBounds(210, 312, 145, 20);
+		lbl_fromto_transit2.setForeground(new Color(112, 128, 144));
+		lbl_fromto_transit2.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_fromto_transit2.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_fromto_transit2.setBounds(220, 312, 145, 20);
 		transit_pane.add(lbl_fromto_transit2);
 		
 		textField_fomto_transit2 = new JTextField();
+		textField_fomto_transit2.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_fomto_transit2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_fomto_transit2.setEditable(false);
-		textField_fomto_transit2.setBounds(352, 312, 111, 20);
+		textField_fomto_transit2.setBounds(343, 312, 111, 20);
 		transit_pane.add(textField_fomto_transit2);
 		textField_fomto_transit2.setColumns(10);
 		
 		lbl_time_transit2 = new JLabel("Time(Transit)");
-		lbl_time_transit2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_time_transit2.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_time_transit2.setBounds(210, 351, 111, 20);
+		lbl_time_transit2.setForeground(new Color(112, 128, 144));
+		lbl_time_transit2.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_time_transit2.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_time_transit2.setBounds(220, 351, 111, 20);
 		transit_pane.add(lbl_time_transit2);
 		
 		textField_time_transit2 = new JTextField();
+		textField_time_transit2.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_time_transit2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_time_transit2.setEditable(false);
-		textField_time_transit2.setBounds(353, 351, 111, 20);
+		textField_time_transit2.setBounds(343, 351, 111, 20);
 		transit_pane.add(textField_time_transit2);
 		textField_time_transit2.setColumns(10);
 		
 		lbl_duration_transit = new JLabel("Duration");
-		lbl_duration_transit.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_duration_transit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lbl_duration_transit.setBounds(481, 351, 75, 20);
+		lbl_duration_transit.setForeground(new Color(112, 128, 144));
+		lbl_duration_transit.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_duration_transit.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_duration_transit.setBounds(491, 351, 75, 20);
 		transit_pane.add(lbl_duration_transit);
 		
+		JLabel lbl_price_transit = new JLabel("Price");
+		lbl_price_transit.setForeground(new Color(112, 128, 144));
+		lbl_price_transit.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_price_transit.setHorizontalAlignment(SwingConstants.LEFT);
+		lbl_price_transit.setBounds(10, 392, 60, 20);
+		transit_pane.add(lbl_price_transit);
+		
 		textField_duration_transit = new JTextField();
+		textField_duration_transit.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_duration_transit.setEditable(false);
 		textField_duration_transit.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_duration_transit.setBounds(563, 351, 111, 20);
+		textField_duration_transit.setBounds(553, 351, 125, 20);
 		transit_pane.add(textField_duration_transit);
 		textField_duration_transit.setColumns(10);
 		
 
-		btn_book_transit = new JButton("Book");
-		btn_book_transit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btn_book_transit.setBounds(303, 415, 105, 36);
+		btn_book_transit = new JButton("BOOK");
+		btn_book_transit.setBorder(new LineBorder(new Color(0, 0, 0)));
+		btn_book_transit.setBackground(Color.WHITE);
+		btn_book_transit.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		btn_book_transit.setBounds(300, 430, 105, 35);
 		transit_pane.add(btn_book_transit);
 		
 		comboBox_transit = new JComboBox();
+		comboBox_transit.setFont(new Font("Arial", Font.BOLD, 11));
 		comboBox_transit.setModel(new DefaultComboBoxModel(new String[] {"Economy", "Premium"}));
-		comboBox_transit.setBounds(353, 388, 111, 22);
+		comboBox_transit.setBounds(80, 392, 111, 22);
 		transit_pane.add(comboBox_transit);
 		
 		textField_price2 = new JTextField();
+		textField_price2.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_price2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_price2.setEditable(false);
 		textField_price2.setColumns(10);
-		textField_price2.setBounds(578, 389, 96, 20);
+		textField_price2.setBounds(270, 392, 60, 20);
 		transit_pane.add(textField_price2);
 		
 		textField_price1 = new JTextField();
+		textField_price1.setFont(new Font("Arial", Font.PLAIN, 11));
 		textField_price1.setEditable(false);
 		textField_price1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_price1.setBounds(481, 389, 96, 20);
+		textField_price1.setBounds(201, 392, 60, 20);
 		transit_pane.add(textField_price1);
 		textField_price1.setColumns(10);
 		

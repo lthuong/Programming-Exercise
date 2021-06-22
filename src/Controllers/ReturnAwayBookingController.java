@@ -8,9 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import ConnectDB.BookingDAO;
+import ConnectDB.UserDAO;
 import Models.UserFindsFlightsModel;
 import Ulti.DateUlti;
 
@@ -21,6 +24,7 @@ import Ulti.DateUlti;
  */
 public class ReturnAwayBookingController {
 	BookingDAO bookingDAO = new BookingDAO();
+	UserDAO userDAO = new UserDAO();
 	private ReturnBookingAway view;
 	private UserFindsFlightsModel userModel;
 	private int innerIndex = 0;
@@ -51,6 +55,13 @@ public class ReturnAwayBookingController {
 	}
 	private void directConfirm()
 	{
+		if (userDAO.getCurrentBudget(userModel.getUser_id()) 
+                < Float.parseFloat(view.getTextField_price_direct().getText())) {
+            String message = "Your budget ist not enough\n"
+                    + "to book a ticket!!";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_direct().getText()), userModel.getUser_id(),
 				Float.parseFloat(view.getTextField_price_direct().getText()), view.getComboBox().getSelectedItem().toString());
 		ReturnBookingBack reFrame = new ReturnBookingBack();
@@ -62,6 +73,13 @@ public class ReturnAwayBookingController {
 	}
 	private void transConfirm()
 	{
+		if (userDAO.getCurrentBudget(userModel.getUser_id()) 
+                < Float.parseFloat(view.getTextField_price1().getText())) {
+            String message = "Your budget ist not enough\n"
+                    + "to book a ticket!!";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_transit().getText()), userModel.getUser_id(),
 				Float.parseFloat(view.getTextField_price1().getText()), view.getComboBox().getSelectedItem().toString());
 		bookingDAO.bookDirectFlight(Integer.parseInt(view.getTextField_flight_transit2().getText()), userModel.getUser_id(),
@@ -93,7 +111,7 @@ public class ReturnAwayBookingController {
 
 	private void initTableDirectController() {
 		
-		view.getTable_direct().setCellSelectionEnabled(true);
+		// view.getTable_direct().setCellSelectionEnabled(true);
 		view.getTable_direct().addMouseListener(new java.awt.event.MouseAdapter() { 
 		@Override
 		 public void mouseClicked(java.awt.event.MouseEvent evt) {  
@@ -129,7 +147,7 @@ public class ReturnAwayBookingController {
 
 	private void initTableDirectTransitController()
 	{
-		view.getTable_transit().setCellSelectionEnabled(true);
+		// view.getTable_transit().setCellSelectionEnabled(true);
 		view.getTable_transit().addMouseListener(new java.awt.event.MouseAdapter() {  
 			@Override
 			 public void mouseClicked(java.awt.event.MouseEvent evt) {  

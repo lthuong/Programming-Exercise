@@ -45,7 +45,7 @@ public class UserFindsFlightsController {
 
 		if (view.getComboBox_ow_from_input().equalsIgnoreCase(view.getComboBox_ow_to_input())) {
 			JOptionPane.showMessageDialog(null, "Please check your input");
-		} else if(!bookingDAO.checkOnewayBooking(view.getComboBox_return_from_input(),view.getComboBox_return_to_input())){
+		} else if(!bookingDAO.checkOnewayBooking(view.getComboBox_ow_from_input(),view.getComboBox_ow_to_input())){
 			  JOptionPane.showMessageDialog(null, "Sorry, there is no flight!"); 
 		} else {
 			OneWayBooking OwFrame = new OneWayBooking();
@@ -54,6 +54,7 @@ public class UserFindsFlightsController {
 					view.getComboBox_ow_to_input(),user.getID());
 
 			new OneWayBookingController(OwFrame, userFindsFlightsModel);
+			view.dispose();
 		}
 
 	}
@@ -73,7 +74,8 @@ public class UserFindsFlightsController {
 							UserFindsFlightsModel userModel = new UserFindsFlightsModel(DateUlti.ConvertDateToInt(view.getRe_away_date()) ,
 									DateUlti.ConvertDateToInt(view.getRe_back_date()),
 									view.getComboBox_return_from_input(), view.getComboBox_return_to_input(),user.getID());
-							new ReturnAwayBookingController(ReFrame,userModel); 
+							new ReturnAwayBookingController(ReFrame,userModel);
+							view.dispose();
 							}
 				} catch (HeadlessException e) {
 					e.printStackTrace();

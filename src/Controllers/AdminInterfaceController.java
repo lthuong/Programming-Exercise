@@ -1,11 +1,20 @@
 package Controllers;
 
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import ConnectDB.AdminDAO;
 
 import ConnectDB.AirlineDAO;
 import Ulti.Converter;
 import Views.AdminInterface;
 import Views.LoginView;
+import Views.UserUI;
 
 /**
  * 
@@ -70,9 +79,42 @@ public class AdminInterfaceController {
 			adminDAO.removeRequest(idnew_flight_request);
 			adminDAO.addNewFlights(airlineDAO.getFlightLineID(dep, arr), start_date, end_date, 
 					converter.convertTimeToFloatTime(dep_time), converter.convertTimeToFloatTime(arr_time), 
-					duration, airlineName, basic_price, premium_price, flight_frequency);
-			adminInterfaceView.getMessage().setText("Successfully confirm request");
-		};
+					duration, airlineName, basic_price, premium_price, flight_frequency);		
+				JOptionPane optionPane = new JOptionPane(
+					    "Do you want to Seat " + "?",
+					    JOptionPane.QUESTION_MESSAGE,
+					    JOptionPane.YES_NO_OPTION);
+				final JDialog dialog = new JDialog(adminInterfaceView, 
+						"Confirm Selection",
+						true);
+				dialog.setContentPane(optionPane);
+				dialog.setBounds(600,400,50,50);
+				dialog.setLocationRelativeTo(null);
+				optionPane.addPropertyChangeListener(
+					    new PropertyChangeListener() {
+					        public void propertyChange(PropertyChangeEvent e) {
+					            String prop = e.getPropertyName();
+
+					            if (dialog.isVisible() 
+					             && (e.getSource() == optionPane)
+					             && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+					                dialog.setVisible(false);
+					            }
+					        }
+					    });
+				dialog.pack();
+				dialog.setVisible(true);
+				int value = ((Integer)optionPane.getValue()).intValue();
+				if (value == JOptionPane.YES_OPTION) {
+					adminInterfaceView.dispose();
+					AdminInterface view = new AdminInterface();
+					new AdminInterfaceController(view);
+
+				} else if (value == JOptionPane.NO_OPTION) {
+					dialog.setVisible(false);
+				}
+			}
+		
 		
 	}
 	
@@ -94,7 +136,40 @@ public class AdminInterfaceController {
 		
 		
 		adminDAO.removeRequest(idnew_flight_request);
-		adminInterfaceView.getMessage().setText("Successfully delete request");
+		JOptionPane optionPane = new JOptionPane(
+			    "Do you want to Seat " + "?",
+			    JOptionPane.QUESTION_MESSAGE,
+			    JOptionPane.YES_NO_OPTION);
+		final JDialog dialog = new JDialog(adminInterfaceView, 
+				"Confirm Selection",
+				true);
+		dialog.setContentPane(optionPane);
+		dialog.setBounds(600,400,50,50);
+		dialog.setLocationRelativeTo(null);
+		optionPane.addPropertyChangeListener(
+			    new PropertyChangeListener() {
+			        public void propertyChange(PropertyChangeEvent e) {
+			            String prop = e.getPropertyName();
+
+			            if (dialog.isVisible() 
+			             && (e.getSource() == optionPane)
+			             && (prop.equals(JOptionPane.VALUE_PROPERTY))) {
+			                dialog.setVisible(false);
+			            }
+			        }
+			    });
+		dialog.pack();
+		dialog.setVisible(true);
+		int value = ((Integer)optionPane.getValue()).intValue();
+		if (value == JOptionPane.YES_OPTION) {
+			adminInterfaceView.dispose();
+			AdminInterface view = new AdminInterface();
+			new AdminInterfaceController(view);
+
+		} else if (value == JOptionPane.NO_OPTION) {
+			dialog.setVisible(false);
+		}
+        
 	}
 	
 	private void handleClickOnRow() {

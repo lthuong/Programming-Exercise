@@ -1,5 +1,8 @@
 package Controllers;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import ConnectDB.AirlineDAO;
 
 import Models.Airline;
@@ -59,7 +62,8 @@ public class AirlineInterfaceController {
 					airlineInterfaceView.getDateChooserStartDate(), airlineInterfaceView.getDateChooserEndDate(), airlineInterfaceView.getSpinnerDepTime(), 
 					airlineInterfaceView.getSpinnerArrTime(), airlineInterfaceView.getSpinnerBasicPrice(), 
 					airlineInterfaceView.getSpinnerPremiumPrice(), airlineInterfaceView.getSpinnerFlightFreq());
-			airlineInterfaceView.getSuccessMsg().setText("Successfully add new flight line!");
+            String message = "Successfully add new flight request";
+            JOptionPane.showMessageDialog(new JFrame(), message, "Confirm", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	private void logout() {

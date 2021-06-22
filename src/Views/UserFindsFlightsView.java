@@ -28,11 +28,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
 
 /**
  * 
  * @author Thanh Tung Trinh
- *
+ * @author Thien Huong Le
  */
 
 public class UserFindsFlightsView extends JFrame {
@@ -44,13 +46,11 @@ public class UserFindsFlightsView extends JFrame {
 	private JLabel Return;
 	private JLabel ow_from_label;
 	private JLabel ow_to_label;
-	private JTextField ow_traveller_input;
 	private JPanel OnewayPanel;
 	private JPanel ReturnPanel;
 	private JLabel re_from_label;
 	private JLabel re_to_label;
 	private JLabel re_departure_label;
-	private JTextField re_traveller_input;
 	private JDateChooser ow_departure_input;
 	private JButton ow_confirm;
 	private JButton re_confirm;
@@ -75,24 +75,28 @@ public class UserFindsFlightsView extends JFrame {
 	public UserFindsFlightsView() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(320, 180, 805, 509);
+		setBounds(320, 180, 805, 458);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
 		panel.setBounds(0, 0, 794, 472);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("TicketReservation");
-		lblNewLabel.setBounds(334, 10, 164, 27);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		JLabel lblNewLabel = new JLabel("TICKETRESERVATION");
+		lblNewLabel.setForeground(new Color(255, 127, 80));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(262, 11, 317, 27);
+		lblNewLabel.setFont(new Font("Rockwell", Font.BOLD, 22));
 		panel.add(lblNewLabel);
 		
 		OneWay = new JLabel("One Way");
-		OneWay.setBounds(0, 33, 401, 43);
+		OneWay.setBounds(0, 45, 401, 35);
 		OneWay.setForeground(new Color(0, 0, 0));
 		OneWay.addMouseListener(new MouseAdapter() {
 			@Override
@@ -105,12 +109,12 @@ public class UserFindsFlightsView extends JFrame {
 		});
 		OneWay.setOpaque(true);
 		OneWay.setHorizontalAlignment(SwingConstants.CENTER);
-		OneWay.setBackground(new Color(240, 255, 240));
-		OneWay.setFont(new Font("Tahoma", Font.BOLD, 15));
+		OneWay.setBackground(new Color(175, 238, 238));
+		OneWay.setFont(new Font("Rockwell", Font.BOLD, 17));
 		panel.add(OneWay);
 		
 		Return = new JLabel("Return");
-		Return.setBounds(400, 33, 401, 43);
+		Return.setBounds(400, 45, 394, 35);
 		Return.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,113 +126,114 @@ public class UserFindsFlightsView extends JFrame {
 		});
 		Return.setOpaque(true);
 		Return.setHorizontalAlignment(SwingConstants.CENTER);
-		Return.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Return.setBackground(Color.CYAN);
+		Return.setFont(new Font("Rockwell", Font.BOLD, 17));
+		Return.setBackground(new Color(152, 251, 152));
 		panel.add(Return);
 		
 		OnewayPanel = new JPanel();
-		OnewayPanel.setBounds(0, 75, 794, 397);
+		OnewayPanel.setBackground(SystemColor.inactiveCaptionBorder);
+		OnewayPanel.setBounds(0, 81, 794, 338);
 		panel.add(OnewayPanel);
 		OnewayPanel.setLayout(null);
 		
 		ow_from_label = new JLabel("From");
-		ow_from_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		ow_from_label.setBounds(210, 66, 110, 28);
+		ow_from_label.setForeground(new Color(119, 136, 153));
+		ow_from_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		ow_from_label.setBounds(210, 60, 110, 30);
 		OnewayPanel.add(ow_from_label);
 		
 		ow_to_label = new JLabel("To");
-		ow_to_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		ow_to_label.setBounds(210, 114, 110, 28);
+		ow_to_label.setForeground(new Color(119, 136, 153));
+		ow_to_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		ow_to_label.setBounds(210, 114, 110, 30);
 		OnewayPanel.add(ow_to_label);
 		
 		ow_departure_input = new JDateChooser();
-		ow_departure_input.setBounds(330, 163, 169, 31);
+		ow_departure_input.getCalendarButton().setFont(new Font("Arial", Font.PLAIN, 12));
+		ow_departure_input.setBounds(330, 163, 169, 30);
 		OnewayPanel.add(ow_departure_input);
 		
 		JLabel ow_departure_label = new JLabel("Departure");
-		ow_departure_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		ow_departure_label.setBounds(210, 163, 110, 31);
+		ow_departure_label.setForeground(new Color(119, 136, 153));
+		ow_departure_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		ow_departure_label.setBounds(210, 163, 110, 30);
 		OnewayPanel.add(ow_departure_label);
 		
-		ow_traveller_input = new JTextField();
-		ow_traveller_input.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ow_traveller_input.setBounds(330, 214, 169, 31);
-		OnewayPanel.add(ow_traveller_input);
-		ow_traveller_input.setColumns(10);
-		
-		JLabel ow_traveller_label = new JLabel("Traveller");
-		ow_traveller_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		ow_traveller_label.setBounds(210, 214, 110, 31);
-		OnewayPanel.add(ow_traveller_label);
-		
 		ow_confirm = new JButton("Confirm");
-		ow_confirm.setFont(new Font("Tahoma", Font.BOLD, 15));
-		ow_confirm.setBounds(350, 311, 132, 37);
+		ow_confirm.setBorder(new LineBorder(new Color(0, 0, 0)));
+		ow_confirm.setBackground(new Color(255, 255, 255));
+		ow_confirm.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		ow_confirm.setBounds(330, 266, 132, 37);
 		OnewayPanel.add(ow_confirm);
 		
 		comboBox_ow_from_input = new JComboBox(bookingDAO.getDEPCities());
-		comboBox_ow_from_input.setBounds(330, 65, 169, 31);
+		comboBox_ow_from_input.setFont(new Font("Arial", Font.BOLD, 12));
+		comboBox_ow_from_input.setBounds(330, 60, 169, 30);
 		OnewayPanel.add(comboBox_ow_from_input);
 		
 		comboBox_ow_to_input = new JComboBox(bookingDAO.getARRCities());
-		comboBox_ow_to_input.setBounds(330, 114, 169, 31);
+		comboBox_ow_to_input.setFont(new Font("Arial", Font.BOLD, 12));
+		comboBox_ow_to_input.setBounds(330, 114, 169, 30);
 		OnewayPanel.add(comboBox_ow_to_input);
 		
 		ReturnPanel = new JPanel();
+		ReturnPanel.setBackground(SystemColor.inactiveCaptionBorder);
 		ReturnPanel.setBounds(0, 75, 794, 397);
 		panel.add(ReturnPanel);
 		ReturnPanel.setLayout(null);
 		
 		re_from_label = new JLabel("From");
-		re_from_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_from_label.setBounds(210, 66, 110, 28);
+		re_from_label.setHorizontalAlignment(SwingConstants.LEFT);
+		re_from_label.setForeground(new Color(119, 136, 153));
+		re_from_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		re_from_label.setBounds(210, 50, 110, 30);
 		ReturnPanel.add(re_from_label);
 		
 		comboBox_return_from_input = new JComboBox(bookingDAO.getDEPCities());
-		comboBox_return_from_input.setBounds(330, 65, 169, 31);
+		comboBox_return_from_input.setFont(new Font("Arial", Font.BOLD, 12));
+		comboBox_return_from_input.setBounds(330, 55, 169, 31);
 		ReturnPanel.add(comboBox_return_from_input);
 		
 		re_to_label = new JLabel("To");
-		re_to_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_to_label.setBounds(210, 114, 100, 28);
+		re_to_label.setHorizontalAlignment(SwingConstants.LEFT);
+		re_to_label.setForeground(new Color(119, 136, 153));
+		re_to_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		re_to_label.setBounds(210, 104, 100, 30);
 		ReturnPanel.add(re_to_label);
 		
 		comboBox_return_to_input = new JComboBox(bookingDAO.getARRCities());
-		comboBox_return_to_input.setBounds(330, 114, 169, 31);
+		comboBox_return_to_input.setFont(new Font("Arial", Font.BOLD, 12));
+		comboBox_return_to_input.setBounds(330, 104, 169, 31);
 		ReturnPanel.add(comboBox_return_to_input);
 		
 		re_departure_label = new JLabel("Departure");
-		re_departure_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_departure_label.setBounds(210, 163, 110, 31);
+		re_departure_label.setHorizontalAlignment(SwingConstants.LEFT);
+		re_departure_label.setForeground(new Color(119, 136, 153));
+		re_departure_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		re_departure_label.setBounds(210, 153, 110, 31);
 		ReturnPanel.add(re_departure_label);
 		
 		re_departure_input = new JDateChooser();
-		re_departure_input.setBounds(330, 163, 169, 31);
+		re_departure_input.getCalendarButton().setFont(new Font("Arial", Font.PLAIN, 12));
+		re_departure_input.setBounds(330, 153, 169, 31);
 		ReturnPanel.add(re_departure_input);
 		
 		JLabel re_return_label = new JLabel("Return");
-		re_return_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_return_label.setBounds(210, 214, 110, 31);
+		re_return_label.setHorizontalAlignment(SwingConstants.LEFT);
+		re_return_label.setForeground(new Color(119, 136, 153));
+		re_return_label.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		re_return_label.setBounds(210, 204, 110, 31);
 		ReturnPanel.add(re_return_label);
 		
 		re_return_input = new JDateChooser();
-		re_return_input.setBounds(330, 214, 169, 31);
+		re_return_input.getCalendarButton().setFont(new Font("Arial", Font.PLAIN, 12));
+		re_return_input.setBounds(330, 204, 169, 31);
 		ReturnPanel.add(re_return_input);
 		
-		JLabel re_traveller_label = new JLabel("Traveller");
-		re_traveller_label.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_traveller_label.setBounds(210, 267, 110, 31);
-		ReturnPanel.add(re_traveller_label);
-		
-		re_traveller_input = new JTextField();
-		re_traveller_input.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		re_traveller_input.setBounds(330, 267, 169, 31);
-		ReturnPanel.add(re_traveller_input);
-		re_traveller_input.setColumns(10);
-		
 		re_confirm = new JButton("Confirm");
-		re_confirm.setFont(new Font("Tahoma", Font.BOLD, 15));
-		re_confirm.setBounds(350, 311, 132, 37);
+		re_confirm.setBackground(new Color(255, 255, 255));
+		re_confirm.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		re_confirm.setBounds(330, 270, 132, 37);
 		ReturnPanel.add(re_confirm);
 	}
 	
@@ -260,9 +265,6 @@ public class UserFindsFlightsView extends JFrame {
 		return ow_to_label;
 	}
 
-	public JTextField getOw_traveller_input() {
-		return ow_traveller_input;
-	}
 
 	public JPanel getOnewayPanel() {
 		return OnewayPanel;
@@ -282,10 +284,6 @@ public class UserFindsFlightsView extends JFrame {
 
 	public JLabel getRe_departure_label() {
 		return re_departure_label;
-	}
-
-	public JTextField getRe_traveller_input() {
-		return re_traveller_input;
 	}
 
 	public JDateChooser getOw_departure_input() {

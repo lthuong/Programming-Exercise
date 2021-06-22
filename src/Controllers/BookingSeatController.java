@@ -213,6 +213,7 @@ public class BookingSeatController {
 						true);
 				dialog.setContentPane(optionPane);
 				dialog.setBounds(600,400,50,50);
+				dialog.setLocationRelativeTo(null);
 				optionPane.addPropertyChangeListener(
 					    new PropertyChangeListener() {
 					        public void propertyChange(PropertyChangeEvent e) {

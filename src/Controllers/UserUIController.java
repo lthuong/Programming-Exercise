@@ -6,6 +6,7 @@ import ConnectDB.UserDAO;
 import Models.Flight;
 import Models.Seat;
 import Models.User;
+import Models.UserFindsFlightsModel;
 import Views.BookingSeatView;
 import Views.UserFindsFlightsView;
 import Views.UserUI;
@@ -29,6 +30,7 @@ public class UserUIController {
 		initController();
 		initTableController();
 	}
+	
 	
 	private void initTableController() {
 		view.getTable().addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,7 +70,7 @@ public class UserUIController {
 	private void findFlights() {
 		UserFindsFlightsView userInterface = new UserFindsFlightsView();
 		new UserFindsFlightsController(userInterface,model);
-		//view.dispose();
+		view.dispose();
 	}
 
 	private void initView() {
