@@ -1,11 +1,9 @@
 package Controllers;
 
-import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import ConnectDB.AdminDAO;
@@ -14,7 +12,7 @@ import ConnectDB.AirlineDAO;
 import Ulti.Converter;
 import Views.AdminInterface;
 import Views.LoginView;
-import Views.UserUI;
+import Views.UsersManagement;
 
 /**
  * 
@@ -49,12 +47,20 @@ public class AdminInterfaceController {
 		handleClickOnRow();
 	}
 
+	private void manageUsers() {
+		UsersManagement uFrame = new UsersManagement();
+		new UsersManagementController(uFrame);
+		uFrame.setVisible(true);
+		adminInterfaceView.dispose();
+	}
+
 	private void initView() {
 		// TODO Auto-generated method stub
 		adminInterfaceView.setVisible(true);
 		adminInterfaceView.getBtnConfirmRequest().addActionListener(e -> approveNewFlightRequest());
 		adminInterfaceView.getBtnDeleteRequest().addActionListener(e -> refuseNewFlightRequest());
 		adminInterfaceView.getBtnLogout().addActionListener(e -> logout());
+		adminInterfaceView.getBtnUsersManagement().addActionListener(e -> manageUsers());
 	}
 	
 	private void approveNewFlightRequest() {

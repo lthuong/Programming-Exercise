@@ -13,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
-import javax.swing.JViewport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,6 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.SystemColor;
 
 /**
  * 
@@ -52,6 +50,7 @@ public class AdminInterface extends JFrame {
 	private DefaultTableModel tbModel;
 	private List<String[]> requests = new ArrayList<>();
 	private JButton btnLogout;
+	private JButton btnUsersManagement;
 	
 	public AdminInterface() {
 		setResizable(false);
@@ -271,8 +270,18 @@ public class AdminInterface extends JFrame {
 		btnDeleteRequest.setBounds(756, 40, 96, 29);
 		contentPane.add(btnDeleteRequest);
 		
+		btnUsersManagement = new JButton("USERS");
+		btnUsersManagement.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		btnUsersManagement.setBackground(new Color(240, 248, 255));
+		btnUsersManagement.setBounds(540, 40, 98, 29);
+		contentPane.add(btnUsersManagement);
+		
 		DefaultTableModel tbModel = (DefaultTableModel)table.getModel();
 		adminDAO.getRequestFromAirline(tbModel, requests);
+	}
+	
+	public JButton getBtnUsersManagement() {
+		return btnUsersManagement;
 	}
 	public JTable getTable() {
 		return table;
@@ -319,5 +328,4 @@ public class AdminInterface extends JFrame {
 	public List<String[]> getRequests() {
 		return requests;
 	}
-
 }

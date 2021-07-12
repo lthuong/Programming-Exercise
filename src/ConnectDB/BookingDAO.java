@@ -5,16 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
+import Ulti.Faktor;
+
 /**
  * 
- * @author Thanh Tung Trinh
+ * @author Thanh Tung Trinh (main)
+ * @author Tuan Anh Nguyen
+ * @author Thien Huong Le
  *
  */
 
@@ -22,6 +24,7 @@ public class BookingDAO {
 	//private static ConnectDB connectDB = null;
 	static Connection conn = null;
 	PreparedStatement preparedStmt;
+	Faktor factor = new Faktor();
 
 		
 	public void bookDirectFlight(int id_flights,int id_cus,float price,String type)
@@ -74,7 +77,7 @@ public class BookingDAO {
 		try {
 			conn = DBConnection.getConnection(); 
 			String sql = "SELECT * FROM airline.flights natural join flights_line where \r\n" + 
-					"flight_day = ? and city_dep = ? and city_arr = ? ";
+					"flight_day = ? and city_dep = ? and city_arr = ? and avail_seats > 0 and avail_premium_seats > 0 ";
 			
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setInt(1,dateinput);
@@ -85,7 +88,7 @@ public class BookingDAO {
 			
 			while(rs.next())
 			{
-				float faktor=Faktor(rs.getFloat("flight_dep"),rs.getString("carrier"),rs.getInt("flight_day"));
+				float faktor = factor.factor(rs.getFloat("flight_dep"),rs.getString("carrier"),rs.getInt("flight_day"));
 				String c_dep = rs.getString("city_dep");
 				String c_arr = rs.getString("city_arr");
 				String id =  String.valueOf(rs.getInt("id_flights"));
@@ -127,8 +130,8 @@ public class BookingDAO {
 				{
 					if(Float.valueOf(a.get(i)[6])<Float.valueOf(b.get(j)[5]))
 					{
-						float faktor1=Faktor(Float.valueOf(a.get(i)[5]),a.get(i)[4],Integer.parseInt(a.get(i)[7]));
-                        float faktor2=Faktor(Float.valueOf(a.get(i)[5]),b.get(j)[4],Integer.parseInt(a.get(i)[7]));
+						float faktor1=factor.factor(Float.valueOf(a.get(i)[5]),a.get(i)[4],Integer.parseInt(a.get(i)[7]));
+                        float faktor2=factor.factor(Float.valueOf(a.get(i)[5]),b.get(j)[4],Integer.parseInt(a.get(i)[7]));
                         
 						String id1=a.get(i)[0];
 						String id2=b.get(j)[0];
@@ -171,11 +174,12 @@ public class BookingDAO {
 	
 	public List<String[]> Transit1(int dateinput,String depinput, String arrinput)
 	{
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		List<String[]> a = new ArrayList();
 		try
 		{
 			conn = DBConnection.getConnection();
-			String sql = "Select * from flights natural join flights_line where flight_day = ? and city_dep = ? and city_arr != ?";
+			String sql = "Select * from flights natural join flights_line where flight_day = ? and city_dep = ? and city_arr != ? and avail_seats > 0 and avail_premium_seats > 0 ";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setInt(1,dateinput);
 			pst.setString(2, depinput);
@@ -207,11 +211,12 @@ public class BookingDAO {
 	}
 	public List<String[]> Transit2(int dateinput,String depinput, String arrinput)
 	{
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		List<String[]> a = new ArrayList();
 		try
 		{
 			conn = DBConnection.getConnection();
-			String sql = "Select * from flights natural join flights_line where flight_day = ? and city_dep != ? and city_arr = ?";
+			String sql = "Select * from flights natural join flights_line where flight_day = ? and city_dep != ? and city_arr = ? and avail_seats > 0 and avail_premium_seats > 0 ";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setInt(1,dateinput);
 			pst.setString(2, depinput);
@@ -242,68 +247,7 @@ public class BookingDAO {
 		return a;
 	}
 	
-	public float Faktor(float flight_dep, String carrier, int flightday)
-	{
-		float x =1;
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat day = new SimpleDateFormat("ddMMyyyy");
-		SimpleDateFormat time = new SimpleDateFormat("HH");
-		SimpleDateFormat month = new SimpleDateFormat("MM");
-		SimpleDateFormat dayflight = new SimpleDateFormat("dd");
-		char[] a =toString().valueOf(flightday).toCharArray();
-		System.out.println(flightday);
-		StringBuilder Input1 = new StringBuilder().append(a[4]).append(a[5]);
-		int InputMonth = Integer.parseInt(String.valueOf(Input1));
-		System.out.println(InputMonth);
-		StringBuilder Input2 = new StringBuilder().append(a[6]).append(a[7]);
-		int InputDay=Integer.parseInt(String.valueOf(Input2));
-		System.out.println(InputDay);
-		//carrier
-		if(carrier.equalsIgnoreCase("Lufthansa"))
-		{
-			x=(float) (x+0.2);
-		}
-		//flight in day
-		if(Integer.parseInt(day.format(calendar.getTime()))==flightday)
-		{
-			x=(float) (x-0.3);
-			if(Float.valueOf(time.format(calendar.getTime()))==flight_dep-3)
-			{
-				x=(float) (x-0.5);
-			}
-			else if (Float.valueOf(time.format(calendar.getTime()))==flight_dep-4)
-			{
-				x=(float) (x-0.4);
-			}
-			else
-			{
-				x=(float) (x-0.2);
-			}
-		}
-		//month
-		if (Integer.parseInt(month.format(calendar.getTime()))==InputMonth-1)
-		{
-			x=(float) (x-0.1);
-		}
-		else if (Integer.parseInt(month.format(calendar.getTime()))==InputMonth-2)
-		{
-			x=(float) (x-0.2);
-		}
-		else if(Integer.parseInt(month.format(calendar.getTime()))<=InputMonth-3)
-		{
-			x=(float) (x-0.3);
-		} 
-		//day
-		if(Integer.parseInt(day.format(calendar.getTime()))==InputMonth && Integer.parseInt(dayflight.format(calendar.getTime())) == InputDay-1)
-		{
-			x= (float) (x-0.3);
-		}
-		else if (Integer.parseInt(day.format(calendar.getTime()))==InputMonth && Integer.parseInt(dayflight.format(calendar.getTime())) <= InputDay-3)
-		{
-			x= (float) (x-0.2);
-		}
-		return x;
-	}
+
 	
 	public String getCityDep(int id_flights) {
 		String city = "";
@@ -350,6 +294,7 @@ public class BookingDAO {
 	}
 	
 	public String[] getDEPCities() {
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		HashSet<String> cities = new HashSet(); 
 		conn = DBConnection.getConnection();
 		String sql = "select city_dep from flights_line";
@@ -372,6 +317,7 @@ public class BookingDAO {
 	}
 	
 	public String[] getARRCities() {
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		HashSet<String> cities = new HashSet(); 
 		conn = DBConnection.getConnection();
 		String sql = "select city_arr from flights_line";

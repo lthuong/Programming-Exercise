@@ -1,7 +1,6 @@
 package Models;
 
 public class Airline {
-	private int ID;
 	private String email;
 	private String name;
 	private String password;

@@ -12,10 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.awt.Color;
-import javax.swing.border.BevelBorder;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -122,7 +120,6 @@ public class AirlineInterface extends JFrame {
 		lblArrTime.setBounds(430, 245, 104, 16);
 		contentPane.add(lblArrTime);
 		
-		Date date1 = new Date();
 		SpinnerDateModel sm1 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
 		spinnerArrTime = new JSpinner(sm1);
 		lblArrTime.setLabelFor(spinnerArrTime);

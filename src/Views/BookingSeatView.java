@@ -1,47 +1,29 @@
 package Views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JViewport;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 
-import ConnectDB.flightSeats;
-import Models.Seat;
 /**
  * 
  * @author Thien Huong Le
  *
  */
 
+@SuppressWarnings("serial")
 public class BookingSeatView extends JFrame {
 
 	private JTable table;
@@ -54,7 +36,6 @@ public class BookingSeatView extends JFrame {
 	private JTextField textField_1;
 	private JTextField txtUnavailable;
 	private JTextField textField_2;
-	private JTextField seatPrice;
 	private JTextField textField;
 	private JTextField txtPremium;
 	private JTextField txtEconomy;
@@ -85,7 +66,7 @@ public class BookingSeatView extends JFrame {
 	    bookingBtn.setBackground(Color.WHITE);
 	    bookingBtn.setIcon(null);
 	    bookingBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	    bookingBtn.setBounds(703, 334, 134, 40);
+	    bookingBtn.setBounds(703, 348, 134, 40);
 	    frame.getContentPane().add(bookingBtn);
 		
 	 
@@ -473,7 +454,7 @@ public class BookingSeatView extends JFrame {
 	    JPanel seatDetail = new JPanel();
 	    seatDetail.setBorder(new LineBorder(Color.PINK, 2));
 	    seatDetail.setBackground(Color.WHITE);
-	    seatDetail.setBounds(283, 330, 367, 139);
+	    seatDetail.setBounds(283, 348, 367, 98);
 	    frame.getContentPane().add(seatDetail);
 	    seatDetail.setLayout(null);
 	    
@@ -490,24 +471,10 @@ public class BookingSeatView extends JFrame {
 	    lblNewLabel_24.setBounds(15, 14, 91, 14);
 	    seatDetail.add(lblNewLabel_24);
 	    
-	    JLabel lblNewLabel_24_1 = new JLabel("Price: ");
-	    lblNewLabel_24_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-	    lblNewLabel_24_1.setHorizontalAlignment(SwingConstants.LEFT);
-	    lblNewLabel_24_1.setBounds(15, 54, 74, 14);
-	    seatDetail.add(lblNewLabel_24_1);
-	    
-	    seatPrice = new JTextField();
-	    seatPrice.setFont(new Font("Tahoma", Font.PLAIN, 11));
-	    seatPrice.setHorizontalAlignment(SwingConstants.LEFT);
-	    seatPrice.setColumns(10);
-	    seatPrice.setBorder(null);
-	    seatPrice.setBounds(120, 52, 123, 20);
-	    seatDetail.add(seatPrice);
-	    
 	    JLabel lblNewLabel_24_1_1 = new JLabel("State: ");
 	    lblNewLabel_24_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 	    lblNewLabel_24_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-	    lblNewLabel_24_1_1.setBounds(15, 94, 74, 14);
+	    lblNewLabel_24_1_1.setBounds(15, 54, 74, 14);
 	    seatDetail.add(lblNewLabel_24_1_1);
 	    
 	    seatState = new JTextField();
@@ -515,7 +482,7 @@ public class BookingSeatView extends JFrame {
 	    seatState.setHorizontalAlignment(SwingConstants.LEFT);
 	    seatState.setColumns(10);
 	    seatState.setBorder(null);
-	    seatState.setBounds(120, 92, 123, 20);
+	    seatState.setBounds(120, 52, 123, 20);
 	    seatDetail.add(seatState);
 	    
 	    textField = new JTextField();
@@ -536,7 +503,7 @@ public class BookingSeatView extends JFrame {
 	    
 	    backBtn.setBackground(Color.WHITE);
 	    backBtn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	    backBtn.setBounds(703, 385, 134, 40);
+	    backBtn.setBounds(703, 399, 134, 40);
 	    frame.getContentPane().add(backBtn);
 	    
 	    JLabel label = new JLabel("New label");

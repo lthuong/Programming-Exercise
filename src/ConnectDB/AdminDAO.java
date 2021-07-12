@@ -3,12 +3,10 @@ package ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import Models.User;
 
 /**
  * 
@@ -37,7 +35,6 @@ public class AdminDAO {
 		return isAdmin;
 	}
 	
-	@SuppressWarnings("null")
 	public void getRequestFromAirline(DefaultTableModel tb1Model, List<String[]> requests) {
 		conn = DBConnection.getConnection(); 
 		try {

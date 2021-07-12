@@ -10,11 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 import ConnectDB.BookingDAO;
 import ConnectDB.UserDAO;
-import Models.User;
 import Models.UserFindsFlightsModel;
-import Ulti.DateUlti;
 import Views.OneWayBooking;
-import Views.UserFindsFlightsView;
 import Views.UserUI;
 
 /**
@@ -27,6 +24,7 @@ public class OneWayBookingController {
 	UserDAO userDAO = new UserDAO();
 	private OneWayBooking view;
 	private UserFindsFlightsModel userModel;
+	@SuppressWarnings("unused")
 	private boolean check = false;
 	private int innerIndex = 0;
 	

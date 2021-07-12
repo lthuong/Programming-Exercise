@@ -14,7 +14,6 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
@@ -43,11 +42,13 @@ public class RegisterView extends JFrame {
 	private static JLabel lastNameTextWarningMsg;
 	private static JLabel firstNameTextWarningMsg;
 	private JLabel lblClass;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 	
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public RegisterView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, -28, 531, 545);
@@ -186,10 +187,11 @@ public class RegisterView extends JFrame {
 		comboBox.setBounds(169, 370, 240, 30);
 		contentPane.add(comboBox);
 	}
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox() {
 		return comboBox;
 	}
-	public void setComboBox(JComboBox comboBox) {
+	public void setComboBox(@SuppressWarnings("rawtypes") JComboBox comboBox) {
 		this.comboBox = comboBox;
 	}
 	public String getFirstName() {

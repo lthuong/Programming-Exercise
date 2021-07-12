@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 public class DBConnection {
 	static Connection conn = null;
 	static String username="root";
-	static String pwd="123456789";
+	static String pwd="";
 	static String connectionUrl = "jdbc:mysql://localhost:3306/airline?useTimezone=true&serverTimezone=UTC";
 	public static Connection getConnection() {
 		try {

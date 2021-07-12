@@ -1,32 +1,24 @@
 package Views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import ConnectDB.BookingDAO;
 
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
@@ -37,6 +29,7 @@ import javax.swing.border.LineBorder;
  * @author Thien Huong Le
  */
 
+@SuppressWarnings("serial")
 public class UserFindsFlightsView extends JFrame {
 	Border default_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , new Color(240,240,240));
 	Border red_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , Color.red);
@@ -54,9 +47,13 @@ public class UserFindsFlightsView extends JFrame {
 	private JDateChooser ow_departure_input;
 	private JButton ow_confirm;
 	private JButton re_confirm;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_ow_from_input;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_ow_to_input;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_return_from_input;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_return_to_input;
 	private JDateChooser re_departure_input;
 	private JDateChooser re_return_input;
@@ -72,6 +69,7 @@ public class UserFindsFlightsView extends JFrame {
 		ReturnPanel.setVisible(false);
 		OnewayPanel.setVisible(true);
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public UserFindsFlightsView() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

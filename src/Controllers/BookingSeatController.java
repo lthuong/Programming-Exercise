@@ -75,6 +75,7 @@ public class BookingSeatController {
 	}
 
 
+	@SuppressWarnings("serial")
 	private void initTable() {
 		// Table model
 		String column1[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y"};
@@ -86,7 +87,7 @@ public class BookingSeatController {
 		
 		
 		table = new JTable(data, column1) {
-			/* Custom table renderer (creat a table of seats according to the state of them)
+			/* Custom table renderer (create a table of seats according to the state of them)
 			 * Column A - C: Premium (BLUE)
 			 * Column D - Y: Economy (WHITE)
 			 * Booked "Seat" (PINK)
@@ -166,12 +167,12 @@ public class BookingSeatController {
 	                char chosenColumn = column1[column].charAt(0);
 	                try {
 	                	String type = userDAO.getSeatType(seatId);
-						if(seatsDB.isBooked(chosenSeat, flightId)) {
-							bookingBtn.setEnabled(false);
-							view.setSeatState("BOOKED");
-						} else {
+						if(!seatsDB.isBooked(chosenSeat, flightId)) {
 							bookingBtn.setEnabled(true);
 							view.setSeatState("AVAILABLE");
+						} else {
+							bookingBtn.setEnabled(false);
+							view.setSeatState("BOOKED");
 						}
 						
 						if( chosenColumn >= 'A' && chosenColumn <= 'C' && type.equals("Premium")) {
@@ -211,9 +212,9 @@ public class BookingSeatController {
 				final JDialog dialog = new JDialog(frame, 
 						"Confirm Selection",
 						true);
-				dialog.setContentPane(optionPane);
-				dialog.setBounds(600,400,50,50);
+				dialog.setBounds(400,600,50,50);
 				dialog.setLocationRelativeTo(null);
+				dialog.setContentPane(optionPane);
 				optionPane.addPropertyChangeListener(
 					    new PropertyChangeListener() {
 					        public void propertyChange(PropertyChangeEvent e) {
@@ -259,9 +260,11 @@ public class BookingSeatController {
 
 			@Override
 			// close the BookingSeatView if the user clicks on the Back button
+			// open the main user interface
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
-
+				UserUI UIFrame = new UserUI();
+				new UserUIController(UIFrame, user);
 			}
 	    	
 	    });

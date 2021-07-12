@@ -1,8 +1,5 @@
 package Views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +7,6 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import ConnectDB.BookingDAO;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -27,8 +23,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 
@@ -39,6 +33,7 @@ import javax.swing.border.LineBorder;
  *
  */
 
+@SuppressWarnings("serial")
 public class BookingUI extends JFrame {
 	Border default_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , new Color(240,240,240));
 	Border red_top_border= BorderFactory.createMatteBorder(2, 0, 0, 0 , Color.red);
@@ -88,7 +83,9 @@ public class BookingUI extends JFrame {
 	private DefaultTableModel transitTableModel;
 	private JLabel lbl_flight_transit2;
 	private JTextField textField_flight_transit2;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox_transit;
 	private JButton btn_book_direct;
 
@@ -104,7 +101,7 @@ public class BookingUI extends JFrame {
 		table_direct.setVisible(true);
 		table_transit.setVisible(false);
 	}
-	@SuppressWarnings({ "serial", "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public BookingUI() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -171,11 +168,9 @@ public class BookingUI extends JFrame {
 						"Departure","Arrival","Duration","Price"
 				}
 			) {
-				@SuppressWarnings("rawtypes")
 				Class[] columnTypes = new Class[] {
 					Object.class, Object.class, Object.class, Object.class
 				};
-				@SuppressWarnings({ "unchecked", "rawtypes" })
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];
 				}
@@ -323,11 +318,9 @@ public class BookingUI extends JFrame {
 						"Departure","Arrival","Transit","Duration","Price"
 				}
 			) {
-				@SuppressWarnings("rawtypes")
 				Class[] columnTypes = new Class[] {
 					Object.class, Object.class, Object.class,Object.class, Object.class
 				};
-				@SuppressWarnings({ "unchecked", "rawtypes" })
 				public Class getColumnClass(int columnIndex) {
 					return columnTypes[columnIndex];
 				}
@@ -544,14 +537,16 @@ public class BookingUI extends JFrame {
 		this.btn_book_transit = btn_book_transit;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox_transit() {
 		return comboBox_transit;
 	}
 
-	public void setComboBox_transit(JComboBox comboBox_transit) {
+	public void setComboBox_transit(@SuppressWarnings("rawtypes") JComboBox comboBox_transit) {
 		this.comboBox_transit = comboBox_transit;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getComboBox() {
 		return comboBox;
 	}
@@ -561,7 +556,7 @@ public class BookingUI extends JFrame {
 		return comboBox.getSelectedItem().toString();
 	}
 
-	public void setComboBox(JComboBox comboBox) {
+	public void setComboBox(@SuppressWarnings("rawtypes") JComboBox comboBox) {
 		this.comboBox = comboBox;
 	}
 

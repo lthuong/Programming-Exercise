@@ -1,22 +1,16 @@
 package ConnectDB;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import Models.Seat;
 
 /**
  * @author: Thien Huong Le
  */
 public class flightSeats {
     private Connection connect = DBConnection.getConnection();
-    private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     
@@ -60,24 +54,6 @@ public class flightSeats {
     		}
     }
     
-    
-    private void close() {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connect != null) {
-                connect.close();
-            }
-        } catch (Exception e) {
-
-        }
-    }
    
 
 

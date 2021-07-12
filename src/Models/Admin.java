@@ -1,8 +1,6 @@
 package Models;
 
 public class Admin {
-	
-	private int ID;
 	private String email;
 	private String password;
 	

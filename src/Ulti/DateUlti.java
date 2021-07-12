@@ -2,6 +2,7 @@ package Ulti;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateUlti {
 	
@@ -36,5 +37,9 @@ public class DateUlti {
 		return true;
 	}
 	
+	public static Date today() {
+		Date today = new Date();
+		return today;
+	}
 	
 }

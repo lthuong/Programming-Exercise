@@ -13,11 +13,8 @@ import javax.swing.JPasswordField;
 import java.awt.Font;
 import java.awt.Image;
 
-import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import javax.swing.border.LineBorder;
 
 /**

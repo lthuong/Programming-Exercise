@@ -1,8 +1,5 @@
 package Views;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JViewport;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +21,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
 
 /**
  * 
@@ -34,11 +29,13 @@ import javax.swing.SwingConstants;
  *
  */
 
+@SuppressWarnings("serial")
 public class UserUI extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JButton btnFind;
 	private JScrollPane scrollPane;
+	private JButton billBtn ;
 	
 	private DefaultTableModel tb1Model;
 	private List<String[]> tableData = new ArrayList<String[]>();
@@ -49,7 +46,6 @@ public class UserUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("serial")
 	public UserUI() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +106,7 @@ public class UserUI extends JFrame {
 		btnFind.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		btnFind.setBackground(Color.WHITE);
 		btnFind.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnFind.setBounds(755, 60, 131, 39);
+		btnFind.setBounds(770, 65, 131, 39);
 		contentPane.add(btnFind);
 		
 		JLabel lblNewLabel = new JLabel("My Flights");
@@ -126,18 +122,29 @@ public class UserUI extends JFrame {
 		textField_wallet.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		textField_wallet.setEnabled(false);
 		textField_wallet.setEditable(false);
-		textField_wallet.setBounds(795, 22, 91, 20);
+		textField_wallet.setBounds(810, 22, 91, 20);
 		textField_wallet.setBackground(SystemColor.inactiveCaptionBorder);
 		textField_wallet.setOpaque(true);
 		textField_wallet.setColumns(10);
 		contentPane.add(textField_wallet);
 		
 		JLabel walletLabel = new JLabel("");
-		walletLabel.setBounds(754, 11, 35, 35);
+		walletLabel.setBounds(770, 11, 35, 35);
 		walletLabel.setIcon(new ImageIcon(walletLogo));
 		contentPane.add(walletLabel);
+		
+		billBtn = new JButton("Bill ");
+		billBtn.setForeground(new Color(255, 255, 255));
+		billBtn.setBorder(new LineBorder(new Color(0, 0, 0)));
+		billBtn.setBackground(new Color(255, 69, 0));
+		billBtn.setFont(new Font("Tahoma", Font.BOLD, 14));
+		billBtn.setBounds(725, 16, 35, 30);
+		contentPane.add(billBtn);
 		tb1Model = (DefaultTableModel)table.getModel();
 
+	}
+	public JButton getBillBtn() {
+		return billBtn;
 	}
 	
 	public JTextField getTextField_wallet() {
