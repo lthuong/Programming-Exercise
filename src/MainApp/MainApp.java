@@ -8,7 +8,7 @@ import Views.LoginView;
 /**
  * 
  * @author Thanh Tung Trinh
- *
+ * GitHub
  */
 public class MainApp {
 
